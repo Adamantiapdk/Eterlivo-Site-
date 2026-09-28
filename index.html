@@ -144,17 +144,17 @@
 
 
 
-    .intro-ball {
+.intro-ball {
   width: 210px;
   max-width: 52vw;
   display: block;
   margin: 0 auto 25px;
   opacity: 0;
-  transform-origin: center;
+  transform-origin: center bottom;
 
   animation:
-    ballEntrance 1.9s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-    ballIdle 2.8s ease-in-out 1.9s infinite;
+    ballEntrance 1.7s ease-out forwards,
+    ballIdle 2.5s ease-in-out 1.7s infinite;
 }
 
 @keyframes ballEntrance {
@@ -162,44 +162,37 @@
   0% {
     opacity: 0;
     transform:
-      translate(-420px, -220px)
-      rotate(-540deg)
-      scale(0.22);
-  }
-
-  35% {
-    opacity: 1;
-    transform:
-      translate(-120px, -40px)
-      rotate(-260deg)
+      translateY(-500px)
+      rotate(-180deg)
       scale(0.65);
   }
 
-  55% {
+  50% {
+    opacity: 1;
     transform:
-      translate(35px, 35px)
-      rotate(-70deg)
-      scale(1.12);
-  }
-
-  70% {
-    transform:
-      translate(-18px, -18px)
+      translateY(25px)
       rotate(20deg)
-      scale(0.92);
+      scale(1.1, 0.88);
   }
 
-  82% {
+  65% {
     transform:
-      translate(10px, 10px)
-      rotate(-8deg)
-      scale(1.05);
+      translateY(-50px)
+      rotate(-12deg)
+      scale(0.94, 1.06);
+  }
+
+  80% {
+    transform:
+      translateY(10px)
+      rotate(5deg)
+      scale(1.04, 0.96);
   }
 
   100% {
     opacity: 1;
     transform:
-      translate(0, 0)
+      translateY(0)
       rotate(0deg)
       scale(1);
   }
@@ -208,15 +201,13 @@
 @keyframes ballIdle {
 
   0%, 100% {
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 
   50% {
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-7px);
   }
 }
-
-    }
 
 
 
