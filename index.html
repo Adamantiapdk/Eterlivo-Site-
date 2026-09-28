@@ -13,15 +13,14 @@
 
   <!-- FONTS -->
 
-  <link rel="preconnect"
-        href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 
   <link rel="preconnect"
         href="https://fonts.gstatic.com"
         crossorigin>
 
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500;600;700;800&family=Noto+Serif:wght@500;600;700;800&display=swap"
-      rel="stylesheet">
+        rel="stylesheet">
 
 
   <style>
@@ -29,21 +28,16 @@
     :root {
 
       --ivory: #f7f3e8;
-
       --cream: #eee7d8;
-
       --cream-light: #fbf8f1;
 
       --brown: #4b2d14;
-
       --brown-dark: #2f1b0d;
 
       --gold: #9a7440;
-
       --gold-light: #c0a06b;
 
       --text: #40352b;
-
       --border: #c9baa3;
 
       --shadow:
@@ -52,48 +46,37 @@
     }
 
 
-
     * {
-
       box-sizing: border-box;
-
       scroll-behavior: smooth;
-
     }
 
 
-
     body {
-
       margin: 0;
 
       background: var(--ivory);
 
       color: var(--text);
 
-      font-family:
-        "Cormorant Garamond",
-        serif;
+      font-family: "Noto Serif", serif;
+
+      font-weight: 500;
 
       font-size: 19px;
 
       line-height: 1.65;
-
     }
-
 
 
     /* =========================
        INTRO SCREEN
     ========================= */
 
-
     #intro-screen {
 
       position: fixed;
-
       inset: 0;
-
       z-index: 99999;
 
       background:
@@ -107,7 +90,6 @@
       display: flex;
 
       align-items: center;
-
       justify-content: center;
 
       padding: 30px 20px;
@@ -115,176 +97,339 @@
       transition:
         opacity 0.7s ease,
         visibility 0.7s ease;
-
     }
-
 
 
     #intro-screen.intro-hidden {
 
       opacity: 0;
-
       visibility: hidden;
-
       pointer-events: none;
-
     }
-
 
 
     .intro-content {
 
       text-align: center;
 
-      max-width: 700px;
+      max-width: 760px;
 
       width: 100%;
-
     }
 
 
+    /* BALL */
 
-.intro-ball {
-  width: 210px;
-  max-width: 52vw;
-  display: block;
-  margin: 0 auto 25px;
-  opacity: 0;
+    .intro-ball {
 
-  animation:
-    ballEntrance 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-    ballGlow 2.5s ease-in-out 1.8s infinite;
-}
+      width: 215px;
 
-@keyframes ballEntrance {
+      max-width: 52vw;
 
-  0% {
-    opacity: 0;
-    transform:
-      scale(0.05)
-      rotate(-360deg);
+      display: block;
 
-    filter:
-      blur(15px)
-      drop-shadow(0 0 0 rgba(154,116,64,0));
-  }
+      margin: 0 auto 20px;
 
-  45% {
-    opacity: 1;
+      opacity: 0;
 
-    transform:
-      scale(1.22)
-      rotate(25deg);
+      transform-origin: center bottom;
 
-    filter:
-      blur(0)
-      drop-shadow(0 0 35px rgba(154,116,64,0.65));
-  }
+      cursor: pointer;
 
-  70% {
-    transform:
-      scale(0.92)
-      rotate(-8deg);
-  }
+      filter:
+        drop-shadow(
+          0 18px 30px
+          rgba(75,45,20,0.20)
+        );
 
-  100% {
-    opacity: 1;
+      animation:
+        ballEntrance
+        2s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards,
 
-    transform:
-      scale(1)
-      rotate(0);
-
-    filter:
-      drop-shadow(0 15px 25px rgba(75,45,20,0.22));
-  }
-}
-
-@keyframes ballGlow {
-
-  0%, 100% {
-    filter:
-      drop-shadow(0 15px 25px rgba(75,45,20,0.18));
-  }
-
-  50% {
-    filter:
-      drop-shadow(0 18px 38px rgba(154,116,64,0.48));
-  }
-}
+        ballIdle
+        2.8s
+        ease-in-out
+        2s
+        infinite;
+    }
 
 
+    @keyframes ballEntrance {
+
+      0% {
+        opacity: 0;
+
+        transform:
+          translateX(-420px)
+          translateY(40px)
+          rotate(-420deg)
+          scale(0.35);
+      }
+
+      35% {
+        opacity: 1;
+
+        transform:
+          translateX(-120px)
+          translateY(0)
+          rotate(-200deg)
+          scale(0.72);
+      }
+
+      55% {
+        transform:
+          translateX(25px)
+          translateY(18px)
+          rotate(-50deg)
+          scale(1.08, 0.92);
+      }
+
+      70% {
+        transform:
+          translateX(-15px)
+          translateY(-35px)
+          rotate(12deg)
+          scale(0.96, 1.05);
+      }
+
+      82% {
+        transform:
+          translateX(8px)
+          translateY(8px)
+          rotate(-5deg)
+          scale(1.03, 0.97);
+      }
+
+      100% {
+        opacity: 1;
+
+        transform:
+          translateX(0)
+          translateY(0)
+          rotate(0deg)
+          scale(1);
+      }
+    }
+
+
+    @keyframes ballIdle {
+
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+
+    .intro-ball:hover {
+
+      animation:
+        hoverBounce
+        0.6s
+        ease;
+    }
+
+
+    @keyframes hoverBounce {
+
+      0% {
+        transform: translateY(0) scale(1);
+      }
+
+      35% {
+        transform: translateY(-16px) scale(1.04);
+      }
+
+      65% {
+        transform: translateY(4px) scale(0.98);
+      }
+
+      100% {
+        transform: translateY(0) scale(1);
+      }
+    }
+
+
+    /* WELCOME LETTERS */
 
     .intro-welcome {
 
-      font-family:
-        "Cinzel",
-        serif;
+      font-family: "Noto Serif", serif;
+
+      font-weight: 800;
 
       color: var(--brown);
 
       font-size:
         clamp(27px, 5vw, 43px);
 
-      letter-spacing: 3px;
+      letter-spacing: 2px;
 
       margin: 0;
 
-      opacity: 0;
-
-      animation:
-        introText
-        0.7s
-        ease
-        forwards;
-
-      animation-delay: 1.1s;
-
+      line-height: 1.35;
     }
 
 
+    .intro-welcome span {
+
+      display: inline-block;
+
+      opacity: 0;
+
+      transform:
+        translateY(20px)
+        scale(0.8);
+
+      text-shadow:
+        0 0 0 rgba(154,116,64,0);
+    }
+
+
+    .intro-welcome.show span {
+
+      animation:
+        revealLetter
+        0.45s
+        ease
+        forwards;
+    }
+
+
+    .intro-welcome .space {
+
+      width: 16px;
+    }
+
+
+    .intro-welcome.show span:nth-child(1)  { animation-delay: 1.55s; }
+    .intro-welcome.show span:nth-child(2)  { animation-delay: 1.62s; }
+    .intro-welcome.show span:nth-child(3)  { animation-delay: 1.69s; }
+    .intro-welcome.show span:nth-child(4)  { animation-delay: 1.76s; }
+    .intro-welcome.show span:nth-child(5)  { animation-delay: 1.83s; }
+    .intro-welcome.show span:nth-child(6)  { animation-delay: 1.90s; }
+    .intro-welcome.show span:nth-child(7)  { animation-delay: 1.97s; }
+
+    .intro-welcome.show span:nth-child(8)  { animation-delay: 2.04s; }
+
+    .intro-welcome.show span:nth-child(9)  { animation-delay: 2.11s; }
+    .intro-welcome.show span:nth-child(10) { animation-delay: 2.18s; }
+
+    .intro-welcome.show span:nth-child(11) { animation-delay: 2.25s; }
+
+    .intro-welcome.show span:nth-child(12) { animation-delay: 2.32s; }
+    .intro-welcome.show span:nth-child(13) { animation-delay: 2.39s; }
+    .intro-welcome.show span:nth-child(14) { animation-delay: 2.46s; }
+    .intro-welcome.show span:nth-child(15) { animation-delay: 2.53s; }
+    .intro-welcome.show span:nth-child(16) { animation-delay: 2.60s; }
+    .intro-welcome.show span:nth-child(17) { animation-delay: 2.67s; }
+    .intro-welcome.show span:nth-child(18) { animation-delay: 2.74s; }
+    .intro-welcome.show span:nth-child(19) { animation-delay: 2.81s; }
+
+
+    @keyframes revealLetter {
+
+      0% {
+        opacity: 0;
+
+        transform:
+          translateY(20px)
+          scale(0.8);
+
+        text-shadow:
+          0 0 0
+          rgba(154,116,64,0);
+      }
+
+      65% {
+        opacity: 1;
+
+        transform:
+          translateY(-3px)
+          scale(1.05);
+
+        text-shadow:
+          0 0 14px
+          rgba(154,116,64,0.30);
+      }
+
+      100% {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+
+        text-shadow:
+          0 0 0
+          rgba(154,116,64,0);
+      }
+    }
+
+
+    /* TAGLINE + LANGUAGE INTRO */
 
     .intro-tagline {
+
+      font-family: "Noto Serif", serif;
+
+      font-weight: 700;
 
       color: var(--gold);
 
       font-size: 22px;
 
-      margin: 12px 0 30px;
+      margin: 14px 0 26px;
 
       opacity: 0;
 
+      transform:
+        translateY(12px);
+    }
+
+
+    .intro-tagline.show {
+
       animation:
-        introText
+        fadeUp
         0.7s
         ease
         forwards;
-
-      animation-delay: 1.35s;
-
     }
-
 
 
     .intro-language-title {
 
+      font-family: "Noto Sans", sans-serif;
+
+      font-weight: 600;
+
       color: #655544;
 
-      font-size: 18px;
+      font-size: 17px;
 
       margin-bottom: 18px;
 
       opacity: 0;
 
+      transform:
+        translateY(12px);
+    }
+
+
+    .intro-language-title.show {
+
       animation:
-        introText
+        fadeUp
         0.7s
         ease
         forwards;
-
-      animation-delay: 1.6s;
-
     }
-
 
 
     .intro-languages {
@@ -299,41 +444,33 @@
 
       opacity: 0;
 
+      transform:
+        translateY(12px);
+    }
+
+
+    .intro-languages.show {
+
       animation:
-        introText
+        fadeUp
         0.7s
         ease
         forwards;
-
-      animation-delay: 1.8s;
-
     }
 
 
-
-    @keyframes introText {
+    @keyframes fadeUp {
 
       from {
-
         opacity: 0;
-
-        transform:
-          translateY(15px);
-
+        transform: translateY(12px);
       }
-
 
       to {
-
         opacity: 1;
-
-        transform:
-          translateY(0);
-
+        transform: translateY(0);
       }
-
     }
-
 
 
     .intro-language-button {
@@ -353,9 +490,9 @@
 
       cursor: pointer;
 
-      font-family:
-        "Cinzel",
-        serif;
+      font-family: "Noto Sans", sans-serif;
+
+      font-weight: 700;
 
       font-size: 13px;
 
@@ -363,30 +500,23 @@
         background 0.25s,
         color 0.25s,
         transform 0.25s;
-
     }
-
 
 
     .intro-language-button:hover {
 
-      background:
-        var(--brown);
+      background: var(--brown);
 
-      color:
-        var(--ivory);
+      color: var(--ivory);
 
       transform:
         translateY(-2px);
-
     }
-
 
 
     /* =========================
        NAVIGATION
     ========================= */
-
 
     nav {
 
@@ -413,31 +543,21 @@
 
       border-bottom:
         1px solid var(--border);
-
     }
-
 
 
     .logo {
 
-      font-family:
-        "Cinzel",
-        serif;
+      font-family: "Noto Serif", serif;
 
-      color:
-        var(--brown);
+      font-weight: 800;
 
-      letter-spacing:
-        4px;
+      color: var(--brown);
 
-      font-size:
-        23px;
+      letter-spacing: 4px;
 
-      font-weight:
-        700;
-
+      font-size: 23px;
     }
-
 
 
     .menu {
@@ -447,54 +567,39 @@
       align-items: center;
 
       gap: 19px;
-
     }
-
 
 
     nav a {
 
-      color:
-        var(--brown);
+      color: var(--brown);
 
-      text-decoration:
-        none;
+      text-decoration: none;
 
-      font-family:
-        "Cinzel",
-        serif;
+      font-family: "Noto Sans", sans-serif;
 
-      font-size:
-        12px;
+      font-weight: 700;
 
-      letter-spacing:
-        0.7px;
+      font-size: 12px;
 
+      letter-spacing: 0.7px;
     }
-
 
 
     nav a:hover {
 
-      color:
-        var(--gold);
-
+      color: var(--gold);
     }
-
 
 
     /* =========================
        LANGUAGE MENU
     ========================= */
 
-
     .language-menu {
 
-      margin-left:
-        8px;
-
+      margin-left: 8px;
     }
-
 
 
     .language-menu button {
@@ -502,69 +607,51 @@
       border:
         1px solid var(--gold);
 
-      background:
-        transparent;
+      background: transparent;
 
-      color:
-        var(--brown);
+      color: var(--brown);
 
       padding:
         6px 9px;
 
-      margin-left:
-        3px;
+      margin-left: 3px;
 
-      border-radius:
-        5px;
+      border-radius: 5px;
 
-      cursor:
-        pointer;
+      cursor: pointer;
 
-      font-family:
-        "Cinzel",
-        serif;
+      font-family: "Noto Sans", sans-serif;
 
-      font-size:
-        10px;
+      font-weight: 700;
 
+      font-size: 10px;
     }
-
 
 
     .language-menu button:hover,
     .language-menu button.active {
 
-      background:
-        var(--brown);
+      background: var(--brown);
 
-      color:
-        var(--ivory);
-
+      color: var(--ivory);
     }
-
 
 
     /* =========================
        HERO
     ========================= */
 
-
     .hero {
 
-      min-height:
-        92vh;
+      min-height: 92vh;
 
-      display:
-        flex;
+      display: flex;
 
-      justify-content:
-        center;
+      justify-content: center;
 
-      align-items:
-        center;
+      align-items: center;
 
-      text-align:
-        center;
+      text-align: center;
 
       padding:
         100px 25px 80px;
@@ -576,130 +663,93 @@
           #f7f3e8 55%,
           #eee7d8 100%
         );
-
     }
-
 
 
     .hero-content {
 
-      max-width:
-        900px;
-
+      max-width: 900px;
     }
-
-
-
-    .ornament {
-
-      color:
-        var(--gold);
-
-      font-size:
-        30px;
-
-      margin:
-        15px 0;
-
-    }
-
 
 
     h1 {
 
-      margin:
-        0;
+      margin: 0;
 
-      font-family:
-        "Cinzel",
-        serif;
+      font-family: "Noto Serif", serif;
+
+      font-weight: 800;
 
       font-size:
         clamp(50px, 9vw, 92px);
 
-      letter-spacing:
-        8px;
+      letter-spacing: 7px;
 
-      color:
-        var(--brown);
-
+      color: var(--brown);
     }
-
 
 
     .main-tagline {
 
-      margin-top:
-        15px;
+      margin-top: 20px;
 
-      font-family:
-        "Cinzel",
-        serif;
+      font-family: "Noto Serif", serif;
+
+      font-weight: 700;
 
       font-size:
         clamp(19px, 3vw, 29px);
 
-      color:
-        var(--gold);
-
+      color: var(--gold);
     }
-
 
 
     .subtitle {
 
-      margin-top:
-        16px;
+      margin-top: 16px;
 
-      font-size:
-        20px;
+      font-family: "Noto Serif", serif;
 
-      font-style:
-        italic;
+      font-weight: 600;
 
-      color:
-        #766452;
+      font-size: 20px;
 
+      font-style: italic;
+
+      color: #766452;
     }
-
 
 
     .hero-description {
 
-      max-width:
-        720px;
+      max-width: 720px;
 
       margin:
         35px auto 0;
 
-      font-size:
-        23px;
+      font-family: "Noto Serif", serif;
 
+      font-weight: 500;
+
+      font-size: 23px;
     }
-
 
 
     /* =========================
        BUTTONS
     ========================= */
 
-
     .hero-buttons {
 
-      margin-top:
-        42px;
-
+      margin-top: 42px;
     }
-
 
 
     .button {
 
-      display:
-        inline-block;
+      display: inline-block;
 
-      margin:
-        6px;
+      margin: 6px;
 
       padding:
         12px 25px;
@@ -707,164 +757,110 @@
       border:
         1px solid var(--brown);
 
-      border-radius:
-        6px;
+      border-radius: 6px;
 
-      color:
-        var(--brown);
+      color: var(--brown);
 
-      text-decoration:
-        none;
+      text-decoration: none;
 
-      font-family:
-        "Cinzel",
-        serif;
+      font-family: "Noto Sans", sans-serif;
 
-      font-size:
-        13px;
+      font-weight: 700;
 
-      transition:
-        0.2s;
+      font-size: 13px;
 
+      transition: 0.2s;
     }
-
 
 
     .button:hover {
 
-      background:
-        var(--brown);
+      background: var(--brown);
 
-      color:
-        var(--ivory);
-
+      color: var(--ivory);
     }
-
 
 
     .button-primary {
 
-      background:
-        var(--brown);
+      background: var(--brown);
 
-      color:
-        var(--ivory);
-
+      color: var(--ivory);
     }
-
 
 
     .button-primary:hover {
 
-      background:
-        var(--gold);
+      background: var(--gold);
 
-      border-color:
-        var(--gold);
-
+      border-color: var(--gold);
     }
-
 
 
     /* =========================
        SECTIONS
     ========================= */
 
-
     section.content-section {
 
-      max-width:
-        1100px;
+      max-width: 1100px;
 
-      margin:
-        auto;
+      margin: auto;
 
       padding:
         90px 25px;
-
     }
-
 
 
     .section-heading {
 
-      text-align:
-        center;
+      text-align: center;
 
-      margin-bottom:
-        45px;
-
+      margin-bottom: 45px;
     }
-
 
 
     .section-heading h2 {
 
-      margin:
-        0;
+      margin: 0;
 
-      font-family:
-        "Cinzel",
-        serif;
+      font-family: "Noto Serif", serif;
 
-      color:
-        var(--brown);
+      font-weight: 800;
+
+      color: var(--brown);
 
       font-size:
         clamp(30px, 5vw, 43px);
-
     }
-
-
-
-    .divider {
-
-      margin:
-        15px auto;
-
-      color:
-        var(--gold);
-
-      text-align:
-        center;
-
-      font-size:
-        24px;
-
-    }
-
 
 
     .section-intro {
 
-      max-width:
-        800px;
+      max-width: 800px;
 
       margin:
-        auto;
+        18px auto 0;
 
-      text-align:
-        center;
+      text-align: center;
 
-      font-size:
-        21px;
+      font-family: "Noto Serif", serif;
 
-      color:
-        #655544;
+      font-weight: 500;
 
+      font-size: 21px;
+
+      color: #655544;
     }
-
 
 
     /* =========================
        PITCH CARDS
     ========================= */
 
-
     .pitch-grid {
 
-      display:
-        grid;
+      display: grid;
 
       grid-template-columns:
         repeat(
@@ -872,14 +868,10 @@
           minmax(240px, 1fr)
         );
 
-      gap:
-        24px;
+      gap: 24px;
 
-      margin-top:
-        45px;
-
+      margin-top: 45px;
     }
-
 
 
     .card {
@@ -890,21 +882,16 @@
       border:
         1px solid var(--border);
 
-      border-radius:
-        18px;
+      border-radius: 18px;
 
-      padding:
-        28px;
+      padding: 28px;
 
-      box-shadow:
-        var(--shadow);
+      box-shadow: var(--shadow);
 
       transition:
         transform 0.25s,
         box-shadow 0.25s;
-
     }
-
 
 
     .card:hover {
@@ -915,54 +902,44 @@
       box-shadow:
         0 12px 30px
         rgba(75,45,20,0.18);
-
     }
-
 
 
     .card h3 {
 
-      margin-top:
-        0;
+      margin-top: 0;
 
-      font-family:
-        "Cinzel",
-        serif;
+      font-family: "Noto Serif", serif;
 
-      color:
-        var(--brown);
+      font-weight: 800;
 
-      font-size:
-        19px;
+      color: var(--brown);
 
+      font-size: 19px;
     }
-
 
 
     .card p {
 
-      margin-bottom:
-        0;
+      margin-bottom: 0;
 
+      font-family: "Noto Serif", serif;
+
+      font-weight: 500;
     }
-
 
 
     /* =========================
        CHAPTERS
     ========================= */
 
-
     .chapter-list {
 
-      max-width:
-        850px;
+      max-width: 850px;
 
       margin:
         40px auto 0;
-
     }
-
 
 
     details {
@@ -973,66 +950,55 @@
       border:
         1px solid var(--border);
 
-      border-radius:
-        14px;
+      border-radius: 14px;
 
-      margin-bottom:
-        15px;
+      margin-bottom: 15px;
 
       box-shadow:
         0 4px 15px
         rgba(75,45,20,0.07);
-
     }
-
 
 
     summary {
 
-      cursor:
-        pointer;
+      cursor: pointer;
 
       padding:
         21px 24px;
 
-      font-family:
-        "Cinzel",
-        serif;
+      font-family: "Noto Serif", serif;
 
-      color:
-        var(--brown);
+      font-weight: 700;
 
-      font-size:
-        16px;
+      color: var(--brown);
 
+      font-size: 16px;
     }
-
 
 
     details p {
 
-      margin:
-        0;
+      margin: 0;
 
       padding:
         0 25px 25px;
 
-      color:
-        #5b4b3e;
+      font-family: "Noto Serif", serif;
 
+      font-weight: 500;
+
+      color: #5b4b3e;
     }
-
 
 
     /* =========================
        SAMPLE
     ========================= */
 
-
     .sample-paper {
 
-      max-width:
-        800px;
+      max-width: 800px;
 
       margin:
         40px auto 0;
@@ -1048,74 +1014,59 @@
 
       box-shadow:
         var(--shadow);
-
     }
-
 
 
     .sample-paper h3 {
 
-      text-align:
-        center;
+      text-align: center;
 
-      font-family:
-        "Cinzel",
-        serif;
+      font-family: "Noto Serif", serif;
 
-      color:
-        var(--brown);
+      font-weight: 800;
 
-      font-size:
-        25px;
+      color: var(--brown);
 
+      font-size: 25px;
     }
-
 
 
     .sample-paper p {
 
-      text-align:
-        justify;
+      text-align: justify;
 
+      font-family: "Noto Serif", serif;
+
+      font-weight: 500;
     }
-
 
 
     .sample-paper
     p:first-of-type::first-letter {
 
-      float:
-        left;
+      float: left;
 
-      font-family:
-        "Cinzel",
-        serif;
+      font-family: "Noto Serif", serif;
 
-      font-size:
-        67px;
+      font-weight: 800;
 
-      line-height:
-        0.8;
+      font-size: 67px;
 
-      padding-right:
-        9px;
+      line-height: 0.8;
 
-      color:
-        var(--gold);
+      padding-right: 9px;
 
+      color: var(--gold);
     }
-
 
 
     /* =========================
        CONTACT
     ========================= */
 
-
     .contact-section {
 
-      background:
-        var(--cream);
+      background: var(--cream);
 
       border-top:
         1px solid var(--border);
@@ -1123,214 +1074,146 @@
       border-bottom:
         1px solid var(--border);
 
-      text-align:
-        center;
+      text-align: center;
 
       padding:
         90px 25px;
-
     }
-
 
 
     .contact-section h2 {
 
-      font-family:
-        "Cinzel",
-        serif;
+      font-family: "Noto Serif", serif;
 
-      color:
-        var(--brown);
+      font-weight: 800;
 
-      font-size:
-        38px;
+      color: var(--brown);
 
+      font-size: 38px;
     }
 
+
+    .contact-section p {
+
+      font-family: "Noto Serif", serif;
+
+      font-weight: 500;
+    }
 
 
     footer {
 
-      text-align:
-        center;
+      text-align: center;
 
       padding:
         35px 20px;
 
-      color:
-        #83715d;
+      color: #83715d;
 
-      font-size:
-        15px;
+      font-family: "Noto Sans", sans-serif;
 
+      font-size: 14px;
     }
 
+
+    /* =========================
+       GREEK
+    ========================= */
+
+    html[lang="gr"] body {
+
+      font-weight: 600;
+    }
+
+
+    html[lang="gr"] h1,
+    html[lang="gr"] .section-heading h2,
+    html[lang="gr"] .contact-section h2,
+    html[lang="gr"] .card h3,
+    html[lang="gr"] summary {
+
+      font-weight: 800;
+    }
 
 
     /* =========================
        MOBILE
     ========================= */
 
-
     @media (max-width: 800px) {
 
       nav {
 
-        position:
-          relative;
+        position: relative;
 
-        flex-direction:
-          column;
+        flex-direction: column;
 
-        gap:
-          13px;
-
+        gap: 13px;
       }
-
 
 
       .menu {
 
-        flex-wrap:
-          wrap;
+        flex-wrap: wrap;
 
-        justify-content:
-          center;
+        justify-content: center;
 
-        gap:
-          11px;
-
+        gap: 11px;
       }
-
 
 
       nav a {
 
-        font-size:
-          10px;
-
+        font-size: 10px;
       }
-
 
 
       .language-menu {
 
-        width:
-          100%;
+        width: 100%;
 
-        text-align:
-          center;
+        text-align: center;
 
         margin:
           7px 0 0;
-
       }
-
 
 
       .hero {
 
-        min-height:
-          80vh;
+        min-height: 80vh;
 
-        padding-top:
-          70px;
-
+        padding-top: 70px;
       }
-
 
 
       .hero-description {
 
-        font-size:
-          20px;
-
+        font-size: 20px;
       }
-
 
 
       .intro-ball {
 
-        width:
-          155px;
-
+        width: 160px;
       }
-
 
 
       .intro-language-button {
 
-        width:
-          100%;
+        width: 100%;
 
-        max-width:
-          240px;
+        max-width: 240px;
+      }
 
+
+      .intro-welcome {
+
+        letter-spacing: 1px;
       }
 
     }
-/* =========================
-   ETERLIVO TYPOGRAPHY
-========================= */
 
-body {
-  font-family: "Noto Serif", serif;
-  font-weight: 500;
-}
-
-h1,
-.section-heading h2,
-.contact-section h2,
-.intro-welcome,
-.card h3,
-.sample-paper h3 {
-  font-family: "Noto Serif", serif;
-  font-weight: 800;
-}
-
-.main-tagline,
-.subtitle,
-.intro-tagline,
-summary {
-  font-family: "Noto Serif", serif;
-  font-weight: 700;
-}
-
-nav a,
-.button,
-.intro-language-button,
-.language-menu button {
-  font-family: "Noto Sans", sans-serif;
-  font-weight: 700;
-}
-
-.logo {
-  font-family: "Noto Serif", serif;
-  font-weight: 800;
-}
-
-.hero-description,
-.section-intro,
-.card p,
-details p,
-.sample-paper p,
-.contact-section p {
-  font-family: "Noto Serif", serif;
-  font-weight: 500;
-}
-
-html[lang="gr"] body {
-  font-weight: 600;
-}
-
-html[lang="gr"] h1,
-html[lang="gr"] .section-heading h2,
-html[lang="gr"] .contact-section h2,
-html[lang="gr"] .intro-welcome,
-html[lang="gr"] .card h3,
-html[lang="gr"] summary {
-  font-weight: 800;
-}
   </style>
 
 </head>
@@ -1345,7 +1228,6 @@ html[lang="gr"] summary {
      INTRO
 ========================= -->
 
-
 <div id="intro-screen">
 
   <div class="intro-content">
@@ -1358,28 +1240,58 @@ html[lang="gr"] summary {
     >
 
 
-    <h2 class="intro-welcome">
+    <h2
+      class="intro-welcome"
+      id="intro-title">
 
-      WELCOME TO ETERLIVO
+      <span>W</span>
+      <span>E</span>
+      <span>L</span>
+      <span>C</span>
+      <span>O</span>
+      <span>M</span>
+      <span>E</span>
+
+      <span class="space"></span>
+
+      <span>T</span>
+      <span>O</span>
+
+      <span class="space"></span>
+
+      <span>E</span>
+      <span>T</span>
+      <span>E</span>
+      <span>R</span>
+      <span>L</span>
+      <span>I</span>
+      <span>V</span>
+      <span>O</span>
 
     </h2>
 
 
-    <div class="intro-tagline">
+    <div
+      class="intro-tagline"
+      id="intro-tagline">
 
       Where Epic Trials Became the Games We Love
 
     </div>
 
 
-    <div class="intro-language-title">
+    <div
+      class="intro-language-title"
+      id="intro-language-title">
 
       Choose your language
 
     </div>
 
 
-    <div class="intro-languages">
+    <div
+      class="intro-languages"
+      id="intro-languages">
 
 
       <button
@@ -1411,6 +1323,7 @@ html[lang="gr"] summary {
 
     </div>
 
+
   </div>
 
 </div>
@@ -1420,7 +1333,6 @@ html[lang="gr"] summary {
 <!-- =========================
      NAVIGATION
 ========================= -->
-
 
 <nav>
 
@@ -1498,31 +1410,23 @@ html[lang="gr"] summary {
     <div class="language-menu">
 
 
-      <button
-        onclick="changeLanguage('en', this)">
-
+      <button onclick="changeLanguage('en', this)">
         EN
-
       </button>
 
 
-      <button
-        onclick="changeLanguage('de', this)">
-
+      <button onclick="changeLanguage('de', this)">
         DE
-
       </button>
 
 
-      <button
-        onclick="changeLanguage('gr', this)">
-
+      <button onclick="changeLanguage('gr', this)">
         GR
-
       </button>
 
 
     </div>
+
 
   </div>
 
@@ -1534,20 +1438,12 @@ html[lang="gr"] summary {
      HOME
 ========================= -->
 
-
 <section
   class="hero"
   id="home">
 
 
   <div class="hero-content">
-
-
-    <div class="ornament">
-
-      ❦
-
-    </div>
 
 
     <h1>
@@ -1594,8 +1490,10 @@ html[lang="gr"] summary {
 
       data-gr="Δύο αντίπαλοι έφηβοι. Ένας σκοτεινός μάγος. Και η μυστική προέλευση των μεγαλύτερων αθλημάτων του κόσμου.">
 
-      Two rival teens. A dark sorcerer.
-      And the secret origin of the world's greatest sports.
+      Two rival teens.
+      A dark sorcerer.
+      And the secret origin
+      of the world's greatest sports.
 
     </div>
 
@@ -1605,6 +1503,7 @@ html[lang="gr"] summary {
 
       <a
         class="button button-primary"
+
         href="#pitch"
 
         data-en="Discover the Project"
@@ -1618,6 +1517,7 @@ html[lang="gr"] summary {
 
       <a
         class="button"
+
         href="#sample"
 
         data-en="Read a Sample"
@@ -1632,13 +1532,6 @@ html[lang="gr"] summary {
     </div>
 
 
-    <div class="ornament">
-
-      ❦
-
-    </div>
-
-
   </div>
 
 </section>
@@ -1648,7 +1541,6 @@ html[lang="gr"] summary {
 <!-- =========================
      PITCH
 ========================= -->
-
 
 <section
   class="content-section"
@@ -1669,13 +1561,6 @@ html[lang="gr"] summary {
       The Pitch
 
     </h2>
-
-
-    <div class="divider">
-
-      ── ❦ ──
-
-    </div>
 
 
     <p
@@ -1705,11 +1590,8 @@ html[lang="gr"] summary {
 
 
       <h3
-
         data-en="High-Concept Premise"
-
         data-de="High-Concept-Prämisse"
-
         data-gr="High-Concept Premise">
 
         High-Concept Premise
@@ -1718,7 +1600,6 @@ html[lang="gr"] summary {
 
 
       <p
-
         data-en="ETERLIVO presents a mythic fantasy adventure built around the secret origins of sport, combining action, history and imaginative world-building."
 
         data-de="ETERLIVO präsentiert ein mythisches Fantasy-Abenteuer über die geheimen Ursprünge des Sports und verbindet Action, Geschichte und fantasievolles World-Building."
@@ -1739,11 +1620,8 @@ html[lang="gr"] summary {
 
 
       <h3
-
         data-en="Character & Emotional Core"
-
         data-de="Charaktere & emotionale Ebene"
-
         data-gr="Χαρακτήρες & Συναισθηματικός Πυρήνας">
 
         Character & Emotional Core
@@ -1752,7 +1630,6 @@ html[lang="gr"] summary {
 
 
       <p
-
         data-en="At the heart of the story are two rival teens whose journey forces them to confront fear, rivalry, courage and trust."
 
         data-de="Im Zentrum der Geschichte stehen zwei rivalisierende Teenager, deren Reise sie mit Angst, Rivalität, Mut und Vertrauen konfrontiert."
@@ -1773,11 +1650,8 @@ html[lang="gr"] summary {
 
 
       <h3
-
         data-en="Target Audience"
-
         data-de="Zielgruppe"
-
         data-gr="Κοινό">
 
         Target Audience
@@ -1786,7 +1660,6 @@ html[lang="gr"] summary {
 
 
       <p
-
         data-en="Upper Middle Grade readers, with crossover appeal for readers who enjoy fantasy, adventure, mythology, history and sport."
 
         data-de="Upper-Middle-Grade-Leser mit Crossover-Potenzial für Fans von Fantasy, Abenteuer, Mythologie, Geschichte und Sport."
@@ -1806,11 +1679,8 @@ html[lang="gr"] summary {
 
 
       <h3
-
         data-en="Franchise & Adaptation Potential"
-
         data-de="Franchise- & Adaptionspotenzial"
-
         data-gr="Franchise & Adaptation Potential">
 
         Franchise & Adaptation Potential
@@ -1819,7 +1689,6 @@ html[lang="gr"] summary {
 
 
       <p
-
         data-en="The concept is designed as a world with the potential to expand across further stories, visual media and related creative formats."
 
         data-de="Das Konzept ist als Welt angelegt, die sich durch weitere Geschichten, visuelle Medien und verwandte kreative Formate erweitern lässt."
@@ -1846,7 +1715,6 @@ html[lang="gr"] summary {
      CHAPTERS
 ========================= -->
 
-
 <section
   class="content-section"
   id="chapters">
@@ -1856,23 +1724,13 @@ html[lang="gr"] summary {
 
 
     <h2
-
       data-en="Chapter Overview"
-
       data-de="Kapitelübersicht"
-
       data-gr="Περίληψη Κεφαλαίων">
 
       Chapter Overview
 
     </h2>
-
-
-    <div class="divider">
-
-      ── ❦ ──
-
-    </div>
 
 
     <p
@@ -1900,11 +1758,8 @@ html[lang="gr"] summary {
 
 
       <summary
-
         data-en="Chapter I — Title"
-
         data-de="Kapitel I — Titel"
-
         data-gr="Κεφάλαιο Ι — Τίτλος">
 
         Chapter I — Title
@@ -1913,7 +1768,6 @@ html[lang="gr"] summary {
 
 
       <p
-
         data-en="Insert the short summary of Chapter 1 here."
 
         data-de="Fügen Sie hier die kurze Zusammenfassung von Kapitel 1 ein."
@@ -1934,11 +1788,8 @@ html[lang="gr"] summary {
 
 
       <summary
-
         data-en="Chapter II — Title"
-
         data-de="Kapitel II — Titel"
-
         data-gr="Κεφάλαιο ΙΙ — Τίτλος">
 
         Chapter II — Title
@@ -1947,7 +1798,6 @@ html[lang="gr"] summary {
 
 
       <p
-
         data-en="Insert the short summary of Chapter 2 here."
 
         data-de="Fügen Sie hier die kurze Zusammenfassung von Kapitel 2 ein."
@@ -1968,11 +1818,8 @@ html[lang="gr"] summary {
 
 
       <summary
-
         data-en="Chapter III — Title"
-
         data-de="Kapitel III — Titel"
-
         data-gr="Κεφάλαιο ΙΙΙ — Τίτλος">
 
         Chapter III — Title
@@ -1981,7 +1828,6 @@ html[lang="gr"] summary {
 
 
       <p
-
         data-en="Insert the short summary of Chapter 3 here."
 
         data-de="Fügen Sie hier die kurze Zusammenfassung von Kapitel 3 ein."
@@ -2008,7 +1854,6 @@ html[lang="gr"] summary {
      SAMPLE
 ========================= -->
 
-
 <section
   class="content-section"
   id="sample">
@@ -2018,23 +1863,13 @@ html[lang="gr"] summary {
 
 
     <h2
-
       data-en="Read a Sample"
-
       data-de="Leseprobe"
-
       data-gr="Δείγμα Κεφαλαίου">
 
       Read a Sample
 
     </h2>
-
-
-    <div class="divider">
-
-      ── ❦ ──
-
-    </div>
 
 
   </div>
@@ -2045,11 +1880,8 @@ html[lang="gr"] summary {
 
 
     <h3
-
       data-en="Chapter I"
-
       data-de="Kapitel I"
-
       data-gr="Κεφάλαιο Ι">
 
       Chapter I
@@ -2058,7 +1890,6 @@ html[lang="gr"] summary {
 
 
     <p
-
       data-en="Your first chapter sample will be placed here. This section is designed to feel closer to the experience of reading a printed book, while remaining comfortable to read on a phone."
 
       data-de="Hier wird die Leseprobe des ersten Kapitels eingefügt. Dieser Bereich soll sich stärker wie das Lesen eines gedruckten Buches anfühlen und gleichzeitig auf dem Smartphone angenehm lesbar bleiben."
@@ -2082,25 +1913,14 @@ html[lang="gr"] summary {
      CONTACT
 ========================= -->
 
-
 <section
   class="contact-section"
   id="contact">
 
 
-  <div class="ornament">
-
-    ❦
-
-  </div>
-
-
   <h2
-
     data-en="Interested in ETERLIVO?"
-
     data-de="Interesse an ETERLIVO?"
-
     data-gr="Ενδιαφέρεστε για το ETERLIVO;">
 
     Interested in ETERLIVO?
@@ -2109,7 +1929,6 @@ html[lang="gr"] summary {
 
 
   <p
-
     data-en="For representation, publishing enquiries or further information about the project, please get in touch."
 
     data-de="Für Vertretung, Verlagsanfragen oder weitere Informationen über das Projekt nehmen Sie bitte Kontakt auf."
@@ -2151,24 +1970,16 @@ html[lang="gr"] summary {
 
 
 
-<!-- =========================
-     SCRIPT
-========================= -->
-
-
 <script>
-
 
   document.body.style.overflow =
     "hidden";
-
 
 
   function changeLanguage(
     lang,
     button = null
   ) {
-
 
     const elements =
       document.querySelectorAll(
@@ -2227,7 +2038,6 @@ html[lang="gr"] summary {
 
   function enterEterlivo(lang) {
 
-
     changeLanguage(lang);
 
 
@@ -2259,6 +2069,81 @@ html[lang="gr"] summary {
   }
 
 
+
+  window.addEventListener(
+    "load",
+    function () {
+
+      const introTitle =
+        document.getElementById(
+          "intro-title"
+        );
+
+      const introTagline =
+        document.getElementById(
+          "intro-tagline"
+        );
+
+      const introLanguageTitle =
+        document.getElementById(
+          "intro-language-title"
+        );
+
+      const introLanguages =
+        document.getElementById(
+          "intro-languages"
+        );
+
+
+      setTimeout(
+        function () {
+
+          introTitle
+            .classList
+            .add("show");
+
+        },
+        1200
+      );
+
+
+      setTimeout(
+        function () {
+
+          introTagline
+            .classList
+            .add("show");
+
+        },
+        2900
+      );
+
+
+      setTimeout(
+        function () {
+
+          introLanguageTitle
+            .classList
+            .add("show");
+
+        },
+        3150
+      );
+
+
+      setTimeout(
+        function () {
+
+          introLanguages
+            .classList
+            .add("show");
+
+        },
+        3400
+      );
+
+    }
+  );
 
 </script>
 
