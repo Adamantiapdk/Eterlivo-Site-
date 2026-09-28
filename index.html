@@ -3,76 +3,296 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eterlivo</title>
+
+  <title>ETERLIVO</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #111;
+      background: #0d0d0d;
       color: white;
-      text-align: center;
+    }
+
+    .language-menu {
+      position: fixed;
+      top: 20px;
+      right: 25px;
+      z-index: 1000;
+    }
+
+    .language-menu button {
+      background: transparent;
+      color: white;
+      border: 1px solid #777;
+      padding: 8px 12px;
+      margin-left: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .language-menu button:hover {
+      background: white;
+      color: black;
     }
 
     .hero {
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      padding: 40px 20px;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .hero-content {
+      max-width: 850px;
     }
 
     h1 {
-      font-size: 60px;
+      font-size: 70px;
+      letter-spacing: 6px;
       margin-bottom: 10px;
-      letter-spacing: 4px;
     }
 
-    h2 {
+    .subtitle {
       font-size: 22px;
-      font-weight: normal;
-      color: #ccc;
-      margin-bottom: 30px;
+      color: #bbb;
+      margin-bottom: 40px;
     }
 
-    p {
-      max-width: 700px;
+    .hook {
+      font-size: 28px;
+      line-height: 1.4;
+      margin-bottom: 40px;
+    }
+
+    .section {
+      max-width: 900px;
+      margin: auto;
+      padding: 80px 25px;
+    }
+
+    .section h2 {
+      font-size: 36px;
+      margin-bottom: 25px;
+    }
+
+    .section p {
       font-size: 18px;
-      line-height: 1.6;
+      line-height: 1.8;
       color: #ddd;
     }
 
-    .button {
-      margin-top: 30px;
+    .contact {
+      text-align: center;
+      padding: 100px 25px;
+      background: #161616;
+    }
+
+    .contact a {
       display: inline-block;
+      margin-top: 20px;
       padding: 14px 28px;
       background: white;
       color: black;
       text-decoration: none;
-      border-radius: 8px;
+      border-radius: 6px;
       font-weight: bold;
     }
 
-    .button:hover {
-      opacity: 0.8;
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #777;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 42px;
+      }
+
+      .hook {
+        font-size: 22px;
+      }
+
+      .language-menu {
+        top: 12px;
+        right: 12px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <section class="hero">
-    <h1>ETERLIVO</h1>
-    <h2>Epic Fantasy • Upper Middle Grade</h2>
+  <div class="language-menu">
+    <button onclick="changeLanguage('en')">EN</button>
+    <button onclick="changeLanguage('de')">DE</button>
+    <button onclick="changeLanguage('gr')">GR</button>
+  </div>
 
-    <p>
-      Welcome to the world of Eterlivo.
-      A fantasy adventure where history, sport and imagination collide.
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <h1>ETERLIVO</h1>
+
+      <div class="subtitle"
+           data-en="Epic Fantasy • Upper Middle Grade"
+           data-de="Epische Fantasy • Upper Middle Grade"
+           data-gr="Επική Φαντασία • Upper Middle Grade">
+        Epic Fantasy • Upper Middle Grade
+      </div>
+
+      <div class="hook"
+           data-en="A journey through fantasy, history and the evolution of sport."
+           data-de="Eine Reise durch Fantasy, Geschichte und die Entwicklung des Sports."
+           data-gr="Ένα ταξίδι μέσα από τη φαντασία, την ιστορία και την εξέλιξη του αθλητισμού.">
+        A journey through fantasy, history and the evolution of sport.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <h2
+      data-en="The Project"
+      data-de="Das Projekt"
+      data-gr="Το Project">
+      The Project
+    </h2>
+
+    <p
+      data-en="ETERLIVO is an original fantasy book project combining adventure, history and the evolution of sport. The project is currently in development and is seeking professional representation and publishing opportunities."
+      data-de="ETERLIVO ist ein originelles Fantasy-Buchprojekt, das Abenteuer, Geschichte und die Entwicklung des Sports miteinander verbindet. Das Projekt befindet sich derzeit in Entwicklung und sucht professionelle Vertretung sowie Möglichkeiten zur Veröffentlichung."
+      data-gr="Το ETERLIVO είναι ένα πρωτότυπο fantasy book project που συνδυάζει περιπέτεια, ιστορία και την εξέλιξη του αθλητισμού. Το project βρίσκεται υπό ανάπτυξη και αναζητά επαγγελματική εκπροσώπηση και εκδοτικές συνεργασίες.">
+      ETERLIVO is an original fantasy book project combining adventure, history and the evolution of sport.
     </p>
 
-    <a class="button" href="#">Discover the Book</a>
   </section>
+
+
+  <section class="section">
+
+    <h2
+      data-en="The Concept"
+      data-de="Das Konzept"
+      data-gr="Η Ιδέα">
+      The Concept
+    </h2>
+
+    <p
+      data-en="The story explores different eras and cultures through a fantasy adventure, using sport as a bridge between worlds, civilizations and generations."
+      data-de="Die Geschichte erkundet verschiedene Epochen und Kulturen durch ein Fantasy-Abenteuer und nutzt Sport als Verbindung zwischen Welten, Zivilisationen und Generationen."
+      data-gr="Η ιστορία εξερευνά διαφορετικές εποχές και πολιτισμούς μέσα από μια fantasy περιπέτεια, χρησιμοποιώντας τον αθλητισμό ως γέφυρα ανάμεσα σε κόσμους, πολιτισμούς και γενιές.">
+      The story explores different eras and cultures through a fantasy adventure.
+    </p>
+
+  </section>
+
+
+  <section class="section">
+
+    <h2
+      data-en="Target Audience"
+      data-de="Zielgruppe"
+      data-gr="Κοινό">
+      Target Audience
+    </h2>
+
+    <p
+      data-en="Upper Middle Grade readers interested in fantasy, adventure, history and sport."
+      data-de="Upper-Middle-Grade-Leser mit Interesse an Fantasy, Abenteuer, Geschichte und Sport."
+      data-gr="Αναγνώστες Upper Middle Grade με ενδιαφέρον για fantasy, περιπέτεια, ιστορία και αθλητισμό.">
+      Upper Middle Grade readers interested in fantasy, adventure, history and sport.
+    </p>
+
+  </section>
+
+
+  <section class="section">
+
+    <h2
+      data-en="Project Status"
+      data-de="Projektstatus"
+      data-gr="Κατάσταση Project">
+      Project Status
+    </h2>
+
+    <p
+      data-en="Currently in development. Seeking representation, publishing partners and professional collaborations."
+      data-de="Derzeit in Entwicklung. Gesucht werden Vertretung, Verlagspartner und professionelle Kooperationen."
+      data-gr="Βρίσκεται σε στάδιο ανάπτυξης. Αναζητούνται εκπροσώπηση, εκδοτικοί συνεργάτες και επαγγελματικές συνεργασίες.">
+      Currently in development.
+    </p>
+
+  </section>
+
+
+  <section class="contact">
+
+    <h2
+      data-en="Interested in ETERLIVO?"
+      data-de="Interesse an ETERLIVO?"
+      data-gr="Ενδιαφέρεστε για το ETERLIVO;">
+      Interested in ETERLIVO?
+    </h2>
+
+    <p
+      data-en="Contact the creator for further information about the project."
+      data-de="Kontaktieren Sie den Autor für weitere Informationen über das Projekt."
+      data-gr="Επικοινωνήστε με τον δημιουργό για περισσότερες πληροφορίες σχετικά με το project.">
+      Contact the creator for further information about the project.
+    </p>
+
+    <a href="mailto:YOURMAIL@example.com"
+       data-en="Contact"
+       data-de="Kontakt"
+       data-gr="Επικοινωνία">
+      Contact
+    </a>
+
+  </section>
+
+
+  <footer>
+    © 2026 ETERLIVO
+  </footer>
+
+
+  <script>
+
+    function changeLanguage(lang) {
+
+      const elements = document.querySelectorAll('[data-' + lang + ']');
+
+      elements.forEach(function(element) {
+        element.innerHTML = element.getAttribute('data-' + lang);
+      });
+
+      document.documentElement.lang = lang;
+
+      localStorage.setItem('eterlivo-language', lang);
+    }
+
+
+    const savedLanguage = localStorage.getItem('eterlivo-language');
+
+    if (savedLanguage) {
+      changeLanguage(savedLanguage);
+    }
+
+  </script>
 
 </body>
 </html>
