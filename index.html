@@ -121,78 +121,61 @@
 
     /* BALL */
 
-  .intro-ball {
-  width: 210px;
-  max-width: 52vw;
+ .intro-ball {
+  width: 190px;
+  max-width: 48vw;
   display: block;
-  margin: 0 auto 25px;
+  margin: 0 auto 20px;
+
   opacity: 0;
-  transform-origin: center;
+
+  transform: translate3d(-220px, 20px, 0) scale(0.9);
+
+  will-change: transform, opacity;
 
   animation:
-    ballEntrance 1.9s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-    ballIdle 2.8s ease-in-out 1.9s infinite;
+    ballEntrance
+    1.6s
+    ease-out
+    forwards;
 }
+
 
 @keyframes ballEntrance {
 
   0% {
     opacity: 0;
     transform:
-      translate(-420px, -220px)
-      rotate(-540deg)
-      scale(0.22);
-  }
-
-  35% {
-    opacity: 1;
-    transform:
-      translate(-120px, -40px)
-      rotate(-260deg)
-      scale(0.65);
+      translate3d(-220px, 20px, 0)
+      scale(0.9);
   }
 
   55% {
+    opacity: 1;
     transform:
-      translate(35px, 35px)
-      rotate(-70deg)
-      scale(1.12);
+      translate3d(15px, -10px, 0)
+      scale(1.03);
   }
 
-  70% {
+  75% {
     transform:
-      translate(-18px, -18px)
-      rotate(20deg)
-      scale(0.92);
+      translate3d(-6px, 6px, 0)
+      scale(0.99);
   }
 
-  82% {
+  88% {
     transform:
-      translate(10px, 10px)
-      rotate(-8deg)
-      scale(1.05);
+      translate3d(3px, -3px, 0)
+      scale(1.01);
   }
 
   100% {
     opacity: 1;
     transform:
-      translate(0, 0)
-      rotate(0deg)
+      translate3d(0, 0, 0)
       scale(1);
   }
 }
-
-@keyframes ballIdle {
-
-  0%, 100% {
-    transform: translateY(0) scale(1);
-  }
-
-  50% {
-    transform: translateY(-8px) scale(1.02);
-  }
-}
-
     /* WELCOME LETTERS */
 
     .intro-welcome {
