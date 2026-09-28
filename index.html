@@ -121,7 +121,7 @@
 
     /* BALL */
 
-   .intro-ball {
+  .intro-ball {
   width: 215px;
   max-width: 52vw;
   display: block;
@@ -143,8 +143,8 @@
 
   animation:
     ballEntrance
-    1.9s
-    cubic-bezier(0.16, 1, 0.3, 1)
+    1.75s
+    cubic-bezier(0.18, 0.85, 0.25, 1)
     forwards;
 }
 
@@ -155,39 +155,32 @@
     opacity: 0;
 
     transform:
-      translate3d(-320px, 10px, 0)
-      rotate(-240deg)
-      scale(0.55);
+      translate3d(-300px, 40px, 0)
+      rotate(-180deg)
+      scale(0.72);
   }
 
   45% {
     opacity: 1;
 
     transform:
-      translate3d(-70px, -8px, 0)
-      rotate(-85deg)
-      scale(0.88);
+      translate3d(-80px, -25px, 0)
+      rotate(-70deg)
+      scale(0.92);
   }
 
-  68% {
+  72% {
     transform:
-      translate3d(12px, 8px, 0)
-      rotate(-18deg)
+      translate3d(15px, 8px, 0)
+      rotate(-10deg)
       scale(1.03);
   }
 
-  82% {
+  86% {
     transform:
-      translate3d(-6px, -10px, 0)
-      rotate(5deg)
+      translate3d(-5px, -8px, 0)
+      rotate(3deg)
       scale(0.99);
-  }
-
-  92% {
-    transform:
-      translate3d(3px, 3px, 0)
-      rotate(-2deg)
-      scale(1.01);
   }
 
   100% {
@@ -199,7 +192,6 @@
       scale(1);
   }
 }
-
 
     /* WELCOME LETTERS */
 
