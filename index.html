@@ -133,9 +133,11 @@
 
   will-change: transform, opacity;
 
- animation:
-  ballEntrance 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-  ballIdle 4.2s ease-in-out 2.4s infinite;
+  animation:
+    ballEntrance 2.2s cubic-bezier(0.22, 0.9, 0.28, 1) forwards,
+    ballIdle 3.2s ease-in-out 2.2s infinite;
+}
+
 
 @keyframes ballEntrance {
 
@@ -143,32 +145,34 @@
     opacity: 0;
 
     transform:
-      translate3d(-220px, 18px, 0)
-      scale(0.96);
+      translate3d(-180px, 30px, 0)
+      scale(0.92);
   }
 
   35% {
-    opacity: 0.55;
-
-    transform:
-      translate3d(-120px, 8px, 0)
-      scale(0.98);
-  }
-
-  65% {
-    opacity: 0.9;
-
-    transform:
-      translate3d(-45px, -3px, 0)
-      scale(0.995);
-  }
-
-  85% {
     opacity: 1;
 
     transform:
-      translate3d(-10px, 0, 0)
-      scale(1.003);
+      translate3d(-85px, 5px, 0)
+      scale(0.97);
+  }
+
+  65% {
+    transform:
+      translate3d(-18px, -6px, 0)
+      scale(1.01);
+  }
+
+  82% {
+    transform:
+      translate3d(5px, 3px, 0)
+      scale(0.995);
+  }
+
+  92% {
+    transform:
+      translate3d(-2px, -2px, 0)
+      scale(1.002);
   }
 
   100% {
@@ -191,8 +195,8 @@
 
   50% {
     transform:
-      translate3d(0, -6px, 0)
-      scale(1.02);
+      translate3d(0, -7px, 0)
+      scale(1.01);
   }
 
   100% {
