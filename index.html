@@ -3,41 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>ETERLIVO</title>
 
   <style>
     * {
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #0d0d0d;
+      background: #0c0c0c;
       color: white;
+      line-height: 1.6;
     }
 
-    .language-menu {
+    nav {
       position: fixed;
-      top: 20px;
-      right: 25px;
+      top: 0;
+      width: 100%;
+      background: rgba(10,10,10,0.95);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 30px;
       z-index: 1000;
+      border-bottom: 1px solid #222;
+    }
+
+    nav .logo {
+      font-weight: bold;
+      letter-spacing: 3px;
+    }
+
+    nav .menu {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      opacity: 0.7;
     }
 
     .language-menu button {
       background: transparent;
+      border: 1px solid #666;
       color: white;
-      border: 1px solid #777;
-      padding: 8px 12px;
-      margin-left: 5px;
+      padding: 6px 9px;
+      margin-left: 4px;
       cursor: pointer;
       border-radius: 5px;
-    }
-
-    .language-menu button:hover {
-      background: white;
-      color: black;
     }
 
     .hero {
@@ -46,58 +69,119 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 80px 20px;
+      padding: 120px 20px 60px;
+      background:
+        radial-gradient(circle at center, #232323 0%, #0c0c0c 70%);
     }
 
     .hero-content {
-      max-width: 850px;
+      max-width: 900px;
     }
 
     h1 {
-      font-size: 70px;
-      letter-spacing: 6px;
-      margin-bottom: 10px;
+      font-size: 72px;
+      letter-spacing: 7px;
+      margin: 0 0 10px;
     }
 
     .subtitle {
-      font-size: 22px;
       color: #bbb;
-      margin-bottom: 40px;
+      font-size: 20px;
+      margin-bottom: 35px;
     }
 
     .hook {
-      font-size: 28px;
-      line-height: 1.4;
-      margin-bottom: 40px;
+      font-size: 30px;
+      max-width: 750px;
+      margin: 0 auto 40px;
     }
 
-    .section {
-      max-width: 900px;
+    .hero-buttons a {
+      display: inline-block;
+      padding: 13px 22px;
+      margin: 6px;
+      border: 1px solid white;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+
+    .hero-buttons a:hover {
+      background: white;
+      color: black;
+    }
+
+    section {
+      max-width: 1000px;
       margin: auto;
-      padding: 80px 25px;
+      padding: 90px 25px;
     }
 
-    .section h2 {
-      font-size: 36px;
+    section h2 {
+      font-size: 38px;
       margin-bottom: 25px;
     }
 
-    .section p {
-      font-size: 18px;
-      line-height: 1.8;
+    section p {
       color: #ddd;
+      font-size: 18px;
+    }
+
+    .pitch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 35px;
+    }
+
+    .card {
+      background: #161616;
+      padding: 24px;
+      border-radius: 10px;
+      border: 1px solid #252525;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    details {
+      background: #151515;
+      border: 1px solid #262626;
+      padding: 18px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    details p {
+      margin-bottom: 0;
+    }
+
+    .sample {
+      background: #141414;
+      padding: 35px;
+      border-radius: 10px;
+      border: 1px solid #252525;
+    }
+
+    .sample p {
+      text-align: justify;
     }
 
     .contact {
       text-align: center;
-      padding: 100px 25px;
-      background: #161616;
     }
 
     .contact a {
       display: inline-block;
       margin-top: 20px;
-      padding: 14px 28px;
+      padding: 13px 25px;
       background: white;
       color: black;
       text-decoration: none;
@@ -107,23 +191,33 @@
 
     footer {
       text-align: center;
-      padding: 25px;
       color: #777;
-      font-size: 14px;
+      padding: 30px;
+      border-top: 1px solid #222;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 800px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      nav .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+      }
+
       h1 {
-        font-size: 42px;
+        font-size: 44px;
       }
 
       .hook {
         font-size: 22px;
       }
 
-      .language-menu {
-        top: 12px;
-        right: 12px;
+      section {
+        padding-top: 80px;
       }
     }
   </style>
@@ -131,15 +225,44 @@
 
 <body>
 
-  <div class="language-menu">
-    <button onclick="changeLanguage('en')">EN</button>
-    <button onclick="changeLanguage('de')">DE</button>
-    <button onclick="changeLanguage('gr')">GR</button>
-  </div>
+  <nav>
+    <div class="logo">ETERLIVO</div>
 
+    <div class="menu">
+      <a href="#home"
+         data-en="Home"
+         data-de="Startseite"
+         data-gr="Αρχική">Home</a>
 
-  <section class="hero">
+      <a href="#pitch"
+         data-en="Pitch"
+         data-de="Pitch"
+         data-gr="Pitch">Pitch</a>
 
+      <a href="#chapters"
+         data-en="Chapters"
+         data-de="Kapitel"
+         data-gr="Κεφάλαια">Chapters</a>
+
+      <a href="#sample"
+         data-en="Sample"
+         data-de="Leseprobe"
+         data-gr="Δείγμα">Sample</a>
+
+      <a href="#contact"
+         data-en="Contact"
+         data-de="Kontakt"
+         data-gr="Επικοινωνία">Contact</a>
+
+      <div class="language-menu">
+        <button onclick="changeLanguage('en')">EN</button>
+        <button onclick="changeLanguage('de')">DE</button>
+        <button onclick="changeLanguage('gr')">GR</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero" id="home">
     <div class="hero-content">
 
       <h1>ETERLIVO</h1>
@@ -152,94 +275,206 @@
       </div>
 
       <div class="hook"
-           data-en="A journey through fantasy, history and the evolution of sport."
-           data-de="Eine Reise durch Fantasy, Geschichte und die Entwicklung des Sports."
-           data-gr="Ένα ταξίδι μέσα από τη φαντασία, την ιστορία και την εξέλιξη του αθλητισμού.">
-        A journey through fantasy, history and the evolution of sport.
+           data-en="A fantasy adventure where history, sport and imagination collide."
+           data-de="Ein Fantasy-Abenteuer, in dem Geschichte, Sport und Vorstellungskraft aufeinandertreffen."
+           data-gr="Μια fantasy περιπέτεια όπου η ιστορία, ο αθλητισμός και η φαντασία συναντιούνται.">
+        A fantasy adventure where history, sport and imagination collide.
+      </div>
+
+      <div class="hero-buttons">
+        <a href="#pitch"
+           data-en="View the Pitch"
+           data-de="Pitch ansehen"
+           data-gr="Δείτε το Pitch">
+          View the Pitch
+        </a>
+
+        <a href="#sample"
+           data-en="Read a Sample"
+           data-de="Leseprobe lesen"
+           data-gr="Διαβάστε Δείγμα">
+          Read a Sample
+        </a>
       </div>
 
     </div>
-
   </section>
 
-
-  <section class="section">
-
+  <section id="pitch">
     <h2
-      data-en="The Project"
-      data-de="Das Projekt"
-      data-gr="Το Project">
-      The Project
+      data-en="The Pitch"
+      data-de="Der Pitch"
+      data-gr="Το Pitch">
+      The Pitch
     </h2>
 
     <p
-      data-en="ETERLIVO is an original fantasy book project combining adventure, history and the evolution of sport. The project is currently in development and is seeking professional representation and publishing opportunities."
-      data-de="ETERLIVO ist ein originelles Fantasy-Buchprojekt, das Abenteuer, Geschichte und die Entwicklung des Sports miteinander verbindet. Das Projekt befindet sich derzeit in Entwicklung und sucht professionelle Vertretung sowie Möglichkeiten zur Veröffentlichung."
-      data-gr="Το ETERLIVO είναι ένα πρωτότυπο fantasy book project που συνδυάζει περιπέτεια, ιστορία και την εξέλιξη του αθλητισμού. Το project βρίσκεται υπό ανάπτυξη και αναζητά επαγγελματική εκπροσώπηση και εκδοτικές συνεργασίες.">
-      ETERLIVO is an original fantasy book project combining adventure, history and the evolution of sport.
+      data-en="ETERLIVO is an original fantasy project that combines adventure, history and the evolution of sport within a fictional world. The project is designed for Upper Middle Grade readers and is currently seeking professional representation and publishing opportunities."
+      data-de="ETERLIVO ist ein originelles Fantasy-Projekt, das Abenteuer, Geschichte und die Entwicklung des Sports in einer fiktiven Welt verbindet. Das Projekt richtet sich an Upper-Middle-Grade-Leser und sucht derzeit professionelle Vertretung und Veröffentlichungsmöglichkeiten."
+      data-gr="Το ETERLIVO είναι ένα πρωτότυπο fantasy project που συνδυάζει περιπέτεια, ιστορία και την εξέλιξη του αθλητισμού μέσα σε έναν φανταστικό κόσμο. Απευθύνεται σε αναγνώστες Upper Middle Grade και αναζητά επαγγελματική εκπροσώπηση και εκδοτικές συνεργασίες.">
+      ETERLIVO is an original fantasy project that combines adventure, history and the evolution of sport.
     </p>
 
+    <div class="pitch-grid">
+
+      <div class="card">
+        <h3
+          data-en="Genre"
+          data-de="Genre"
+          data-gr="Είδος">
+          Genre
+        </h3>
+        <p
+          data-en="Epic Fantasy / Adventure"
+          data-de="Epische Fantasy / Abenteuer"
+          data-gr="Epic Fantasy / Περιπέτεια">
+          Epic Fantasy / Adventure
+        </p>
+      </div>
+
+      <div class="card">
+        <h3
+          data-en="Audience"
+          data-de="Zielgruppe"
+          data-gr="Κοινό">
+          Audience
+        </h3>
+        <p
+          data-en="Upper Middle Grade"
+          data-de="Upper Middle Grade"
+          data-gr="Upper Middle Grade">
+          Upper Middle Grade
+        </p>
+      </div>
+
+      <div class="card">
+        <h3
+          data-en="Core Concept"
+          data-de="Grundidee"
+          data-gr="Βασική Ιδέα">
+          Core Concept
+        </h3>
+        <p
+          data-en="Fantasy storytelling shaped around history and the evolution of sport."
+          data-de="Fantasy-Erzählung rund um Geschichte und die Entwicklung des Sports."
+          data-gr="Fantasy αφήγηση γύρω από την ιστορία και την εξέλιξη του αθλητισμού.">
+          Fantasy storytelling shaped around history and the evolution of sport.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3
+          data-en="Project Status"
+          data-de="Projektstatus"
+          data-gr="Κατάσταση Project">
+          Project Status
+        </h3>
+        <p
+          data-en="In development • Seeking representation"
+          data-de="In Entwicklung • Auf der Suche nach Vertretung"
+          data-gr="Υπό ανάπτυξη • Αναζητά εκπροσώπηση">
+          In development • Seeking representation
+        </p>
+      </div>
+
+    </div>
   </section>
 
-
-  <section class="section">
+  <section id="chapters">
 
     <h2
-      data-en="The Concept"
-      data-de="Das Konzept"
-      data-gr="Η Ιδέα">
-      The Concept
+      data-en="Chapter Overview"
+      data-de="Kapitelübersicht"
+      data-gr="Περίληψη Κεφαλαίων">
+      Chapter Overview
     </h2>
 
     <p
-      data-en="The story explores different eras and cultures through a fantasy adventure, using sport as a bridge between worlds, civilizations and generations."
-      data-de="Die Geschichte erkundet verschiedene Epochen und Kulturen durch ein Fantasy-Abenteuer und nutzt Sport als Verbindung zwischen Welten, Zivilisationen und Generationen."
-      data-gr="Η ιστορία εξερευνά διαφορετικές εποχές και πολιτισμούς μέσα από μια fantasy περιπέτεια, χρησιμοποιώντας τον αθλητισμό ως γέφυρα ανάμεσα σε κόσμους, πολιτισμούς και γενιές.">
-      The story explores different eras and cultures through a fantasy adventure.
+      data-en="Select a chapter to read a brief overview."
+      data-de="Wählen Sie ein Kapitel, um eine kurze Zusammenfassung zu lesen."
+      data-gr="Επιλέξτε ένα κεφάλαιο για να δείτε μια σύντομη περίληψη.">
+      Select a chapter to read a brief overview.
     </p>
+
+    <details>
+      <summary
+        data-en="Chapter 1 — The Beginning"
+        data-de="Kapitel 1 — Der Anfang"
+        data-gr="Κεφάλαιο 1 — Η Αρχή">
+        Chapter 1 — The Beginning
+      </summary>
+
+      <p
+        data-en="Short summary of Chapter 1 goes here."
+        data-de="Hier steht eine kurze Zusammenfassung von Kapitel 1."
+        data-gr="Εδώ θα μπει η σύντομη περίληψη του Κεφαλαίου 1.">
+        Short summary of Chapter 1 goes here.
+      </p>
+    </details>
+
+    <details>
+      <summary
+        data-en="Chapter 2 — New Worlds"
+        data-de="Kapitel 2 — Neue Welten"
+        data-gr="Κεφάλαιο 2 — Νέοι Κόσμοι">
+        Chapter 2 — New Worlds
+      </summary>
+
+      <p
+        data-en="Short summary of Chapter 2 goes here."
+        data-de="Hier steht eine kurze Zusammenfassung von Kapitel 2."
+        data-gr="Εδώ θα μπει η σύντομη περίληψη του Κεφαλαίου 2.">
+        Short summary of Chapter 2 goes here.
+      </p>
+    </details>
+
+    <details>
+      <summary
+        data-en="Chapter 3 — The Challenge"
+        data-de="Kapitel 3 — Die Herausforderung"
+        data-gr="Κεφάλαιο 3 — Η Πρόκληση">
+        Chapter 3 — The Challenge
+      </summary>
+
+      <p
+        data-en="Short summary of Chapter 3 goes here."
+        data-de="Hier steht eine kurze Zusammenfassung von Kapitel 3."
+        data-gr="Εδώ θα μπει η σύντομη περίληψη του Κεφαλαίου 3.">
+        Short summary of Chapter 3 goes here.
+      </p>
+    </details>
 
   </section>
 
-
-  <section class="section">
+  <section id="sample">
 
     <h2
-      data-en="Target Audience"
-      data-de="Zielgruppe"
-      data-gr="Κοινό">
-      Target Audience
+      data-en="Sample Chapter"
+      data-de="Leseprobe"
+      data-gr="Δείγμα Κεφαλαίου">
+      Sample Chapter
     </h2>
 
-    <p
-      data-en="Upper Middle Grade readers interested in fantasy, adventure, history and sport."
-      data-de="Upper-Middle-Grade-Leser mit Interesse an Fantasy, Abenteuer, Geschichte und Sport."
-      data-gr="Αναγνώστες Upper Middle Grade με ενδιαφέρον για fantasy, περιπέτεια, ιστορία και αθλητισμό.">
-      Upper Middle Grade readers interested in fantasy, adventure, history and sport.
-    </p>
+    <div class="sample">
 
+      <h3
+        data-en="Chapter 1"
+        data-de="Kapitel 1"
+        data-gr="Κεφάλαιο 1">
+        Chapter 1
+      </h3>
+
+      <p
+        data-en="This section will contain a sample from the opening chapter of ETERLIVO. The full text can be placed here later, formatted for comfortable reading on desktop and mobile."
+        data-de="Dieser Abschnitt enthält später eine Leseprobe aus dem ersten Kapitel von ETERLIVO. Der vollständige Text kann hier eingefügt und für Desktop und Mobilgeräte angenehm formatiert werden."
+        data-gr="Σε αυτή την ενότητα θα μπει δείγμα από το πρώτο κεφάλαιο του ETERLIVO. Το πλήρες κείμενο μπορεί αργότερα να τοποθετηθεί εδώ, σε μορφή κατάλληλη για άνετη ανάγνωση από υπολογιστή και κινητό.">
+        This section will contain a sample from the opening chapter of ETERLIVO.
+      </p>
+
+    </div>
   </section>
 
-
-  <section class="section">
-
-    <h2
-      data-en="Project Status"
-      data-de="Projektstatus"
-      data-gr="Κατάσταση Project">
-      Project Status
-    </h2>
-
-    <p
-      data-en="Currently in development. Seeking representation, publishing partners and professional collaborations."
-      data-de="Derzeit in Entwicklung. Gesucht werden Vertretung, Verlagspartner und professionelle Kooperationen."
-      data-gr="Βρίσκεται σε στάδιο ανάπτυξης. Αναζητούνται εκπροσώπηση, εκδοτικοί συνεργάτες και επαγγελματικές συνεργασίες.">
-      Currently in development.
-    </p>
-
-  </section>
-
-
-  <section class="contact">
+  <section id="contact" class="contact">
 
     <h2
       data-en="Interested in ETERLIVO?"
@@ -249,13 +484,13 @@
     </h2>
 
     <p
-      data-en="Contact the creator for further information about the project."
-      data-de="Kontaktieren Sie den Autor für weitere Informationen über das Projekt."
-      data-gr="Επικοινωνήστε με τον δημιουργό για περισσότερες πληροφορίες σχετικά με το project.">
-      Contact the creator for further information about the project.
+      data-en="For further information, representation or publishing enquiries, please get in touch."
+      data-de="Für weitere Informationen, Vertretung oder Verlagsanfragen nehmen Sie bitte Kontakt auf."
+      data-gr="Για περισσότερες πληροφορίες, εκπροσώπηση ή εκδοτικές συνεργασίες, επικοινωνήστε μαζί μας.">
+      For further information, representation or publishing enquiries, please get in touch.
     </p>
 
-    <a href="mailto:YOURMAIL@example.com"
+    <a href="mailto:ana.evorys@gmail.com"
        data-en="Contact"
        data-de="Kontakt"
        data-gr="Επικοινωνία">
@@ -264,16 +499,12 @@
 
   </section>
 
-
   <footer>
     © 2026 ETERLIVO
   </footer>
 
-
   <script>
-
     function changeLanguage(lang) {
-
       const elements = document.querySelectorAll('[data-' + lang + ']');
 
       elements.forEach(function(element) {
@@ -281,17 +512,14 @@
       });
 
       document.documentElement.lang = lang;
-
       localStorage.setItem('eterlivo-language', lang);
     }
-
 
     const savedLanguage = localStorage.getItem('eterlivo-language');
 
     if (savedLanguage) {
       changeLanguage(savedLanguage);
     }
-
   </script>
 
 </body>
