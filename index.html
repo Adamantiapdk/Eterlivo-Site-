@@ -121,44 +121,57 @@
 
     /* BALL */
 
+.ball-entry {
+  opacity: 0;
+
+  animation:
+    ballEntrance 0.65s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    forwards;
+}
+
+
 .intro-ball {
   width: 195px;
   max-width: 50vw;
+
   display: block;
   margin: 0 auto 20px;
 
-  opacity: 0;
+  will-change: transform;
 
-  transform-origin: center center;
-
-  will-change: transform, opacity;
-
- animation:
-  ballEntrance 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-  ballIdle 4.2s ease-in-out 1.8s infinite;
+  animation:
+    ballIdle 4.2s
+    ease-in-out
+    0.65s
+    infinite;
 }
 
 
 @keyframes ballEntrance {
 
-  0% {
+  from {
     opacity: 0;
+
     transform:
-      translate3d(-260px, 0, 0)
-      scale(0.96);
+      translate3d(-180px, 0, 0)
+      scale(0.78);
   }
 
-  100% {
+  to {
     opacity: 1;
+
     transform:
       translate3d(0, 0, 0)
       scale(1);
   }
+
 }
+
 
 @keyframes ballIdle {
 
-  0% {
+  0%, 100% {
     transform:
       translate3d(0, 0, 0)
       scale(1);
@@ -170,11 +183,6 @@
       scale(1.02);
   }
 
-  100% {
-    transform:
-      translate3d(0, 0, 0)
-      scale(1);
-  }
 }
     /* WELCOME LETTERS */
 
@@ -1164,11 +1172,13 @@
   <div class="intro-content">
 
 
-    <img
-      src="ball.png"
-      alt="ETERLIVO character"
-      class="intro-ball"
-    >
+   <div class="ball-entry">
+  <img
+    src="ball.png"
+    alt="ETERLIVO character"
+    class="intro-ball"
+  >
+</div>
 
 
     <h2
