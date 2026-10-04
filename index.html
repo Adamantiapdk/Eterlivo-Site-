@@ -2321,7 +2321,233 @@
 
     }
   );
+/* =========================
+   PITCH FLIPBOOK
+========================= */
 
+const pitchImages = [
+  "pitch-en-01.jpg",
+  "pitch-en-02.jpg",
+  "pitch-en-03.jpg",
+  "pitch-en-04.jpg",
+  "pitch-en-05.jpg",
+  "pitch-en-06.jpg",
+  "pitch-en-07.jpg",
+  "pitch-en-08.jpg",
+  "pitch-en-09.jpg",
+  "pitch-en-10.jpg",
+  "pitch-en-11.jpg",
+  "pitch-en-12.jpg",
+  "pitch-en-13.jpg",
+  "pitch-en-14.jpg",
+  "pitch-en-15.jpg",
+  "pitch-en-16.jpg"
+];
+
+
+const pitchModal =
+  document.getElementById("pitch-modal");
+
+const openPitchButton =
+  document.getElementById("open-pitch");
+
+const closePitchButton =
+  document.getElementById("close-pitch");
+
+const pitchPrev =
+  document.getElementById("pitch-prev");
+
+const pitchNext =
+  document.getElementById("pitch-next");
+
+const pitchCounter =
+  document.getElementById("pitch-page-counter");
+
+
+let pitchPageFlip = null;
+
+
+function createPitchBook() {
+
+  if (pitchPageFlip) {
+    return;
+  }
+
+
+  const bookElement =
+    document.getElementById("pitch-book");
+
+
+  pitchPageFlip =
+    new St.PageFlip(
+      bookElement,
+      {
+        width: 500,
+        height: 500,
+
+        size: "stretch",
+
+        minWidth: 280,
+        maxWidth: 500,
+
+        minHeight: 280,
+        maxHeight: 500,
+
+        maxShadowOpacity: 0.35,
+
+        showCover: true,
+
+        mobileScrollSupport: false,
+
+        usePortrait: true,
+
+        autoSize: true,
+
+        flippingTime: 850
+      }
+    );
+
+
+  pitchPageFlip.loadFromImages(
+    pitchImages
+  );
+
+
+  pitchPageFlip.on(
+    "flip",
+    function(event) {
+
+      const currentPage =
+        Number(event.data) + 1;
+
+      pitchCounter.textContent =
+        currentPage +
+        " / " +
+        pitchImages.length;
+
+    }
+  );
+
+}
+
+
+function openPitchBook(event) {
+
+  if (event) {
+    event.preventDefault();
+  }
+
+
+  pitchModal.classList.add(
+    "open"
+  );
+
+
+  document.body.style.overflow =
+    "hidden";
+
+
+  createPitchBook();
+
+}
+
+
+function closePitchBook() {
+
+  pitchModal.classList.remove(
+    "open"
+  );
+
+
+  document.body.style.overflow =
+    "auto";
+
+}
+
+
+openPitchButton.addEventListener(
+  "click",
+  openPitchBook
+);
+
+
+closePitchButton.addEventListener(
+  "click",
+  closePitchBook
+);
+
+
+pitchPrev.addEventListener(
+  "click",
+  function() {
+
+    if (pitchPageFlip) {
+      pitchPageFlip.flipPrev();
+    }
+
+  }
+);
+
+
+pitchNext.addEventListener(
+  "click",
+  function() {
+
+    if (pitchPageFlip) {
+      pitchPageFlip.flipNext();
+    }
+
+  }
+);
+
+
+pitchModal.addEventListener(
+  "click",
+  function(event) {
+
+    if (
+      event.target === pitchModal
+    ) {
+      closePitchBook();
+    }
+
+  }
+);
+
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      !pitchModal.classList.contains("open")
+    ) {
+      return;
+    }
+
+
+    if (event.key === "Escape") {
+      closePitchBook();
+    }
+
+
+    if (
+      event.key === "ArrowRight" &&
+      pitchPageFlip
+    ) {
+      pitchPageFlip.flipNext();
+    }
+
+
+    if (
+      event.key === "ArrowLeft" &&
+      pitchPageFlip
+    ) {
+      pitchPageFlip.flipPrev();
+    }
+
+  }
+);
 </script>
 
 
