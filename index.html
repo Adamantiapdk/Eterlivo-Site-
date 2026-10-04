@@ -2164,6 +2164,116 @@
     box-sizing: border-box;
   }
 }
+    /* =========================
+   SAMPLE BOOK READER
+========================= */
+
+.sample-reader {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #d8d2c8,
+      #cfc7bb
+    );
+
+  padding: 36px 18px;
+}
+
+.sample-book {
+  width: min(760px, 100%);
+
+  margin: 0 auto;
+
+  padding: 60px 70px;
+
+  background: #fffdf8;
+
+  border: 1px solid #d7c9b5;
+
+  border-radius: 8px;
+
+  box-shadow:
+    0 12px 35px
+    rgba(0,0,0,.18);
+
+  font-family: "Noto Serif", serif;
+
+  font-size: 18px;
+
+  line-height: 1.85;
+
+  color: #33291f;
+}
+
+.sample-book h3 {
+  margin: 0 0 34px;
+
+  text-align: center;
+
+  font-size: 30px;
+
+  color: var(--brown);
+}
+
+.sample-book p {
+  margin: 0 0 1.3em;
+
+  text-align: justify;
+}
+
+.sample-book p:first-of-type::first-letter {
+  float: left;
+
+  margin: 8px 8px 0 0;
+
+  font-size: 62px;
+
+  line-height: .8;
+
+  font-family: "Noto Serif", serif;
+
+  color: var(--gold);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+  .sample-reader {
+    padding: 0;
+    background: #fffdf8;
+  }
+
+  .sample-book {
+    width: 100%;
+
+    min-height: 100%;
+
+    padding: 44px 24px 70px;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+  }
+
+  .sample-book h3 {
+    font-size: 26px;
+
+    margin-bottom: 28px;
+  }
+
+}
   </style>
 
 </head>
@@ -2609,15 +2719,9 @@
 
     </div>
 
-    <div class="sample-reader">
-
-      <iframe
-        id="sample-frame"
-        src=""
-        title="ETERLIVO Reading Sample">
-      </iframe>
-
-    </div>
+   <div class="sample-reader">
+  <div id="sample-book" class="sample-book"></div>
+</div>
 
   </div>
 
@@ -3204,69 +3308,7 @@ const closeSampleEl =
   document.getElementById("close-sample");
 
 
-function openSampleModal() {
 
-  const lang =
-    document.documentElement.lang || "en";
-
-  if (lang === "de") {
-    sampleFrameEl.src = "sample-de.pdf";
-  } else {
-    /* English + Greek for now */
-    sampleFrameEl.src = "sample-en.pdf";
-  }
-
-  sampleModalEl.classList.add("open");
-
-  document.body.style.overflow = "hidden";
-}
-
-
-function closeSampleModal() {
-
-  sampleModalEl.classList.remove("open");
-
-  document.body.style.overflow = "auto";
-
-  sampleFrameEl.src = "";
-}
-
-
-if (closeSampleEl) {
-
-  closeSampleEl.addEventListener(
-    "click",
-    closeSampleModal
-  );
-
-}
-
-
-sampleModalEl.addEventListener(
-  "click",
-  function(event) {
-
-    if (event.target === sampleModalEl) {
-      closeSampleModal();
-    }
-
-  }
-);
-
-
-document.addEventListener(
-  "keydown",
-  function(event) {
-
-    if (
-      event.key === "Escape" &&
-      sampleModalEl.classList.contains("open")
-    ) {
-      closeSampleModal();
-    }
-
-  }
-);
  /* =========================
    CONTACT
 ========================= */
@@ -3329,6 +3371,44 @@ document.addEventListener(
 
   }
 );
+  /* =========================
+   SAMPLE BOOK CONTENT
+========================= */
+
+const sampleBookEl =
+  document.getElementById("sample-book");
+
+function openSampleModal() {
+
+  const lang =
+    document.documentElement.lang || "en";
+
+  if (lang === "de") {
+
+    sampleBookEl.innerHTML = `
+      <h3>KAPITEL 1</h3>
+
+      <p>
+        Deutscher Text kommt hier.
+      </p>
+    `;
+
+  } else {
+
+    sampleBookEl.innerHTML = `
+      <h3>CHAPTER ONE</h3>
+
+      <p>
+        English text goes here.
+      </p>
+    `;
+
+  }
+
+  sampleModalEl.classList.add("open");
+
+  document.body.style.overflow = "hidden";
+}
 </script>
 
 
