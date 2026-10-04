@@ -3378,36 +3378,39 @@ document.addEventListener(
 const sampleBookEl =
   document.getElementById("sample-book");
 
-function openSampleModal() {
+async function openSampleModal() {
 
   const lang =
     document.documentElement.lang || "en";
 
+  let sampleFile = "sample-en.html";
+
   if (lang === "de") {
+    sampleFile = "sample-en.html";
+  }
 
-    sampleBookEl.innerHTML = `
-      <h3>KAPITEL 1</h3>
+  try {
 
-      <p>
-        Deutscher Text kommt hier.
-      </p>
-    `;
+    const response =
+      await fetch(sampleFile);
 
-  } else {
+    const sampleHtml =
+      await response.text();
 
-    sampleBookEl.innerHTML = `
-      <h3>CHAPTER ONE</h3>
+    sampleBookEl.innerHTML =
+      sampleHtml;
 
-      <p>
-        English text goes here.
-      </p>
-    `;
+  } catch (error) {
+
+    sampleBookEl.innerHTML =
+      "<p>Unable to load sample.</p>";
 
   }
 
   sampleModalEl.classList.add("open");
 
-  document.body.style.overflow = "hidden";
+  document.body.style.overflow =
+    "hidden";
 }
 </script>
 
