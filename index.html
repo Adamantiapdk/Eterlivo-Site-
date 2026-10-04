@@ -2086,7 +2086,7 @@
    PITCH FLIPBOOK
 ========================= */
 
-const pitchImages = [
+const pitchImagesEN = [
   "pitch-en-01.jpg",
   "pitch-en-02.jpg",
   "pitch-en-03.jpg",
@@ -2104,6 +2104,35 @@ const pitchImages = [
   "pitch-en-15.jpg",
   "pitch-en-16.jpg"
 ];
+
+const pitchImagesDE = [
+  "pitch-de-01.jpg",
+  "pitch-de-02.jpg",
+  "pitch-de-03.jpg",
+  "pitch-de-04.jpg",
+  "pitch-de-05.jpg",
+  "pitch-de-06.jpg",
+  "pitch-de-07.jpg",
+  "pitch-de-08.jpg",
+  "pitch-de-09.jpg",
+  "pitch-de-10.jpg",
+  "pitch-de-11.jpg",
+  "pitch-de-12.jpg",
+  "pitch-de-13.jpg",
+  "pitch-de-14.jpg",
+  "pitch-de-15.jpg",
+  "pitch-de-16.jpg"
+];
+
+function getPitchImages() {
+  const lang = document.documentElement.lang;
+
+  if (lang === "de") {
+    return pitchImagesDE;
+  }
+
+  return pitchImagesEN;
+}
 
 
 const pitchModal =
@@ -2169,9 +2198,9 @@ maxHeight: 315,
     );
 
 
-  pitchPageFlip.loadFromImages(
-    pitchImages
-  );
+pitchPageFlip.loadFromImages(
+  getPitchImages()
+);
 
 
   pitchPageFlip.on(
@@ -2184,7 +2213,7 @@ maxHeight: 315,
       pitchCounter.textContent =
         currentPage +
         " / " +
-        pitchImages.length;
+      getPitchImages().length
 
     }
   );
@@ -2198,18 +2227,22 @@ function openPitchBook(event) {
     event.preventDefault();
   }
 
+  pitchModal.classList.add("open");
+  document.body.style.overflow = "hidden";
 
-  pitchModal.classList.add(
-    "open"
-  );
+  const bookElement =
+    document.getElementById("pitch-book");
 
-
-  document.body.style.overflow =
-    "hidden";
-
+  if (pitchPageFlip) {
+    pitchPageFlip.destroy();
+    pitchPageFlip = null;
+    bookElement.innerHTML = "";
+  }
 
   createPitchBook();
 
+  pitchCounter.textContent =
+    "1 / " + getPitchImages().length;
 }
 
 
