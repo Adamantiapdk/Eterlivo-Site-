@@ -3307,7 +3307,12 @@ const sampleFrameEl =
 const closeSampleEl =
   document.getElementById("close-sample");
 
-
+if (closeSampleEl) {
+  closeSampleEl.onclick = function() {
+    sampleModalEl.classList.remove("open");
+    document.body.style.overflow = "auto";
+  };
+}
 
  /* =========================
    CONTACT
