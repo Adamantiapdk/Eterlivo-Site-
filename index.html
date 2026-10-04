@@ -1699,6 +1699,156 @@
     font-size: 13px;
   }
 }
+    /* =========================
+   STORY MODAL
+========================= */
+
+.story-modal {
+  position: fixed;
+  inset: 0;
+
+  z-index: 1000000;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(28, 19, 12, 0.92);
+
+  overflow: auto;
+}
+
+.story-modal.open {
+  display: flex;
+}
+
+.story-modal-inner {
+  position: relative;
+
+  width: min(900px, 100%);
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  padding:
+    58px 42px
+    42px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--cream-light),
+      var(--ivory)
+    );
+
+  border:
+    1px solid var(--gold-light);
+
+  box-shadow:
+    0 22px 60px
+    rgba(0, 0, 0, 0.35);
+}
+
+.story-close {
+  position: absolute;
+
+  top: 14px;
+  right: 16px;
+
+  width: 44px;
+  height: 44px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: var(--brown);
+
+  color: var(--ivory);
+
+  font-size: 28px;
+
+  cursor: pointer;
+}
+
+.story-close:hover {
+  background: var(--gold);
+}
+
+.story-content h2 {
+  margin:
+    0 0 28px;
+
+  text-align: center;
+
+  font-family:
+    "Noto Serif",
+    serif;
+
+  font-weight: 800;
+
+  font-size:
+    clamp(30px, 5vw, 46px);
+
+  color:
+    var(--brown);
+}
+
+#story-text {
+  font-family:
+    "Noto Serif",
+    serif;
+
+  font-weight: 500;
+
+  font-size: 18px;
+
+  line-height: 1.8;
+
+  color:
+    var(--text);
+}
+
+#story-text p {
+  margin:
+    0 0 20px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+  .story-modal {
+    padding: 0;
+  }
+
+  .story-modal-inner {
+    width: 100vw;
+    height: 100dvh;
+    max-height: none;
+
+    padding:
+      70px 22px
+      36px;
+
+    border-radius: 0;
+  }
+
+  .story-content h2 {
+    font-size: 30px;
+  }
+
+  #story-text {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+}
   </style>
 
 </head>
@@ -1922,9 +2072,10 @@
 
       <!-- THE STORY -->
 
-      <button
-        class="menu-card"
-        id="menu-story">
+     <button
+  class="menu-card"
+  id="menu-story"
+  onclick="openStoryModal()">
 
         <span
           class="menu-card-title"
@@ -2081,6 +2232,37 @@
     class="mobile-book-counter"
   >
     1 / 16
+  </div>
+
+</div>
+  <!-- =========================
+     STORY MODAL
+========================= -->
+
+<div id="story-modal" class="story-modal">
+
+  <div class="story-modal-inner">
+
+    <button
+      id="close-story"
+      class="story-close"
+      aria-label="Close story">
+      ×
+    </button>
+
+    <div class="story-content">
+
+      <h2
+        data-en="THE STORY"
+        data-de="DIE GESCHICHTE"
+        data-gr="THE STORY">
+        THE STORY
+      </h2>
+
+      <div id="story-text"></div>
+
+    </div>
+
   </div>
 
 </div>
@@ -2485,7 +2667,130 @@ mobileBookClose.addEventListener(
 );
  
  
- 
+ /* =========================
+   THE STORY
+========================= */
+
+const storyModalEl = document.getElementById("story-modal");
+const storyTextEl = document.getElementById("story-text");
+const closeStoryEl = document.getElementById("close-story");
+
+
+const storyEnglish = `
+<p>In a land of eternal olive trees, the withered Great Olive stands as a reminder of Eterlivo’s defeat at the hands of Bre, Gaia’s fallen adviser. His curse has kept the earthbound Spartheans and the winged Flipeans divided for generations.</p>
+
+<p>Zako, the Sparthean leader, longs for peace but is equally determined to safeguard his people’s dignity. His emerging feelings for Tila further complicate his position.</p>
+
+<p>When Zako’s failed attempt to uncover the contents of the Flipeans’ enigmatic basket sparks an impromptu game with the Ballos—living, perfectly round orange creatures with expressive eyes and inseparable members of the Sparthean community—Tila admits that the basket contains only ordinary fruit and apologises. Their reconciliation breaks the curse, and a green leaf sprouts on the Great Olive.</p>
+
+<p>Enraged, Bre retaliates by abducting the Ballos, stripping the Flipeans of their wings, and plunging the realms into darkness. The Great Olive chooses Zako, Tila, and a misfit band as Eterlivo’s last hope. One of its branches becomes a blazing torch, while Xechartes, an enigmatic guide with mismatched eyes, materialises from an old map to lead them on their journey.</p>
+
+<p>To reach Bre’s Dark Castle, they must free the three realms that block their path. Zako must overcome his insecurities and unite the group, while Tila refuses to surrender to a wingless fate.</p>
+
+<p>In the first realm, they encounter petrified dragons that hurl fireballs. Using a soaked net, the companions repel the dragons’ attacks and shatter the invisible dome imprisoning the realm’s inhabitants.</p>
+
+<p>Next, they seek the stolen Seeds of Nature, guarded by eleven giants. Through teamwork and ingenuity, they prevail by carrying and exchanging crystal seed-spheres. They discover that the giants are the enchanted Months, blackmailed by Bre, who is holding their brother February captive.</p>
+
+<p>In the water realm, its inhabitants refuse to let the group pass. The companions ally themselves with the water beings of a hidden lake. When the lake floods with toxic pitch, destroying the water beings’ tails, the crew transforms another deadly trial into a team game, saving both their new allies and the entire realm.</p>
+
+<p>As the trials grow more dangerous, Zako learns to trust the team’s strength rather than bear every burden alone. Tila begins to realise that her wings were never her true source of strength.</p>
+
+<p>Inside Bre’s Dark Castle, the companions refuse a potion meant to enslave them, overcome the final obstacles, and free the Ballos. In the ultimate battle, their unity and strategy turn Bre’s own power against him. The roots of the earth coil around his body, transforming him into an olive tree. The realms are restored, and the heroes return triumphantly to Eterlivo.</p>
+
+<p>Tila receives new wings, now knowing that her true strength comes from her unyielding spirit. Zako is marked with Gaia’s silver olive leaf and realises that he does not need wings to soar.</p>
+
+<p>Xechartes brings the memories of the five worlds to life, revealing how every deadly trap became a game and gave birth to basketball, volleyball, football, water polo, athletics, and martial arts. The five memories transform into interlocking circles, establishing the Games and preserving the sports—and the values born from them—for generations to come.</p>
+
+<p>The heroes prevail not because they are the strongest, but because they never give up, support one another, and soar together on the “wings of the heart.”</p>
+`;
+
+
+const storyGerman = `
+<p>Im Land der ewigen Olivenbäume erinnert der verdorrte, uralte Olivenbaum an Eterlivos Niederlage gegen Bre, Gaias verstoßenen Berater. Seit Generationen hält sein Fluch die erdverbundenen Spartheaner und die geflügelten Flipeaner in Feindschaft gefangen.</p>
+
+<p>Zako, der Anführer der Spartheaner, sehnt sich nach Frieden, will aber zugleich die Würde seines Volkes verteidigen. Seine ersten Gefühle für Tila machen seine Lage noch komplizierter. Er sieht sich gezwungen zu handeln, um die Ballos zu beschützen – lebendige, vollkommen runde, orangefarbene Wesen mit ausdrucksstarken Augen, die untrennbar mit dem Volk der Spartheaner verbunden sind. Zudem muss er das Rätsel um den rätselhaften Korb der Flipeaner lösen, ein streng gehütetes Geheimnis, das Gerüchte über uralte Zauber nährt.</p>
+
+<p>Als Zakos missglückter Versuch, den Inhalt des Korbes zu enthüllen, zu einem Spiel mit den Ballos führt, gesteht Tila, dass sich darin nur gewöhnliche Früchte befinden, und bittet um Verzeihung. Ihre Versöhnung bricht den Fluch und am uralten Olivenbaum sprießt ein grünes Blatt. Außer sich vor Zorn entführt Bre die Ballos, raubt den Flipeanern ihre Flügel und stürzt die Reiche in Finsternis.</p>
+
+<p>Der Uralte Olivenbaum erwählt Zako, Tila und eine ungewöhnliche Gemeinschaft zur letzten Hoffnung ihrer Welt. Einer seiner Äste verwandelt sich in eine brennende Fackel, während aus einer alten Karte Xechartis Gestalt annimmt – ein rätselhafter Führer mit verschiedenfarbigen Augen, der sie von nun an leitet. Um Bres dunkle Burg zu erreichen, müssen sie drei Reiche befreien, die ihnen den Weg versperren. Zako überwindet seine Unsicherheiten und eint die Gruppe, während Tila sich weigert, sich in ein Leben ohne Flügel zu fügen.</p>
+
+<p>Im ersten Reich begegnen sie versteinerten Drachen, die Feuerkugeln schleudern. Mit einem nassen Netz wehren sie die Geschosse ab und zerstören die unsichtbare Kuppel, unter der die Bewohner gefangen sind.</p>
+
+<p>Danach suchen sie die gestohlenen Samen der Natur, die von elf Riesen beschützt werden. Durch geschicktes Teamwork und Einfallsreichtum besiegen sie ihre Gegner, indem sie die kristallinen Samenkugeln tragen und austauschen. Sie entdecken, dass die Riesen die verzauberten Monate sind, die Bre erpresste, indem er ihren Bruder, den Februar, gefangen hielt.</p>
+
+<p>Im Wasserreich weigern sich die Bewohner, sie passieren zu lassen. Dort verbünden sie sich mit den Wasservölkern eines versteckten Sees. Als der See mit giftigem Pech überflutet wird, welches die Schwänze der Wasservölker zerstört, verwandelt die Gruppe auch diese tödliche Prüfung in ein gemeinsames Spiel, um sowohl die Wesen als auch das gesamte Reich zu retten.</p>
+
+<p>Während die Prüfungen immer gefährlicher werden, lernt Zako, auf die Stärke der Gruppe zu vertrauen, statt die Verantwortung allein zu tragen. Tila beginnt zu begreifen, dass ihre Flügel niemals die wahre Quelle ihrer Stärke waren.</p>
+
+<p>In Bres dunkler Burg widerstehen die Gefährten einem Trank, mit dem er sie versklaven will. Sie überwinden die letzten Hindernisse und befreien die Ballos. In der Entscheidungsschlacht wenden die Einigkeit und Strategie der Helden Bres' Macht gegen ihn. Die Wurzeln der Erde umschlingen seinen Körper und verwandeln ihn in einen Olivenbaum. Die Reiche erwachen zu neuem Leben und die Helden kehren triumphierend nach Eterlivo zurück.</p>
+
+<p>Tila erhält neue Flügel, weiß nun jedoch, dass ihre wahre Stärke aus ihrem unbeugsamen Geist kommt. Zako erhält Gaias silbernes Olivenblatt und begreift, dass man keine Flügel braucht, um zu fliegen.</p>
+
+<p>Xechartes erweckt die Erinnerungen an die fünf Welten zum Leben, in denen sich jede tödliche Falle in ein Spiel verwandelte und so die Sportarten Basketball, Volleyball, Fußball, Wasserball und Leichtathletik erschuf. Diese fünf Erinnerungen verwandeln sich in ineinandergreifende Kreise und begründen die Spiele, die die Sportarten und die daraus entstandenen Werte am Leben erhalten.</p>
+
+<p>Die Helden siegten nicht, weil sie die Stärksten waren, sondern weil sie niemals aufgaben, einander Halt gaben und gemeinsam mit den „Flügeln des Herzens” flogen.</p>
+`;
+
+
+function openStoryModal() {
+
+  const lang =
+    document.documentElement.lang || "en";
+
+  if (lang === "de") {
+    storyTextEl.innerHTML = storyGerman;
+  } else {
+    /* English + Greek for now */
+    storyTextEl.innerHTML = storyEnglish;
+  }
+
+  storyModalEl.classList.add("open");
+
+  document.body.style.overflow = "hidden";
+}
+
+
+function closeStoryModal() {
+
+  storyModalEl.classList.remove("open");
+
+  document.body.style.overflow = "auto";
+}
+
+
+if (closeStoryEl) {
+  closeStoryEl.addEventListener(
+    "click",
+    closeStoryModal
+  );
+}
+
+
+storyModalEl.addEventListener(
+  "click",
+  function(event) {
+
+    if (event.target === storyModalEl) {
+      closeStoryModal();
+    }
+
+  }
+);
+
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      event.key === "Escape" &&
+      storyModalEl.classList.contains("open")
+    ) {
+      closeStoryModal();
+    }
+
+  }
+);
 </script>
 
 
