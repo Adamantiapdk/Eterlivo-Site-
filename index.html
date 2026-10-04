@@ -1419,9 +1419,21 @@
 
 @media (max-width: 950px) and (orientation: landscape) {
 
+  .mobile-book-modal {
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+  }
+
   #mobile-book {
-    width: 100vw;
-    height: 100vh;
+    width: min(100vw, calc(100vh * 1.7778));
+    height: min(100vh, calc(100vw / 1.7778));
+
+    min-height: 0;
+
+    margin: auto;
+
+    overflow: hidden;
   }
 
   .mobile-rotate-hint {
@@ -1436,7 +1448,6 @@
   .mobile-book-counter {
     bottom: 8px;
   }
-
 }
   </style>
 
@@ -2594,8 +2605,8 @@ minHeight: 180,
 maxHeight: 788,
 
       showCover: true,
-      usePortrait: true,
-      autoSize: true,
+usePortrait: false,
+autoSize: true,
 
       mobileScrollSupport: false,
 
