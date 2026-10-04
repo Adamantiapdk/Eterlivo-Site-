@@ -2319,81 +2319,7 @@ const openPitchButton =
 const closePitchButton =
   document.getElementById("close-pitch");
 
-const pitchPrev =
-  document.getElementById("pitch-prev");
 
-const pitchNext =
-  document.getElementById("pitch-next");
-
-const pitchCounter =
-  document.getElementById("pitch-page-counter");
-
-
-let pitchPageFlip = null;
-
-
-function createPitchBook() {
-
-  if (pitchPageFlip) {
-    return;
-  }
-
-
-  const bookElement =
-    document.getElementById("pitch-book");
-
-
-  pitchPageFlip =
-    new St.PageFlip(
-      bookElement,
-      {
-      width: 560,
-height: 315,
-
-size: "stretch",
-
-minWidth: 280,
-maxWidth: 560,
-
-minHeight: 158,
-maxHeight: 315,
-
-        maxShadowOpacity: 0.35,
-
-        showCover: true,
-
-        mobileScrollSupport: false,
-
-        usePortrait: true,
-
-        autoSize: true,
-
-        flippingTime: 850
-      }
-    );
-
-
-pitchPageFlip.loadFromImages(
-  getPitchImages()
-);
-
-
-  pitchPageFlip.on(
-    "flip",
-    function(event) {
-
-      const currentPage =
-        Number(event.data) + 1;
-
-      pitchCounter.textContent =
-        currentPage +
-        " / " +
-      getPitchImages().length
-
-    }
-  );
-
-}
 function openPitchBook(event) {
 
   if (event) {
@@ -2408,60 +2334,27 @@ function openPitchBook(event) {
 
 function closePitchBook() {
 
-  pitchModal.classList.remove(
-    "open"
-  );
+  pitchModal.classList.remove("open");
 
-
-  document.body.style.overflow =
-    "auto";
-
+  document.body.style.overflow = "auto";
 }
 
 
-openPitchButton.addEventListener(
-  "click",
-  openPitchBook
-);
+if (closePitchButton) {
 
+  closePitchButton.addEventListener(
+    "click",
+    closePitchBook
+  );
 
-closePitchButton.addEventListener(
-  "click",
-  closePitchBook
-);
-
-
-pitchPrev.addEventListener(
-  "click",
-  function() {
-
-    if (pitchPageFlip) {
-      pitchPageFlip.flipPrev();
-    }
-
-  }
-);
-
-
-pitchNext.addEventListener(
-  "click",
-  function() {
-
-    if (pitchPageFlip) {
-      pitchPageFlip.flipNext();
-    }
-
-  }
-);
+}
 
 
 pitchModal.addEventListener(
   "click",
   function(event) {
 
-    if (
-      event.target === pitchModal
-    ) {
+    if (event.target === pitchModal) {
       closePitchBook();
     }
 
@@ -2474,30 +2367,10 @@ document.addEventListener(
   function(event) {
 
     if (
-      !pitchModal.classList.contains("open")
+      event.key === "Escape" &&
+      pitchModal.classList.contains("open")
     ) {
-      return;
-    }
-
-
-    if (event.key === "Escape") {
       closePitchBook();
-    }
-
-
-    if (
-      event.key === "ArrowRight" &&
-      pitchPageFlip
-    ) {
-      pitchPageFlip.flipNext();
-    }
-
-
-    if (
-      event.key === "ArrowLeft" &&
-      pitchPageFlip
-    ) {
-      pitchPageFlip.flipPrev();
     }
 
   }
@@ -2611,14 +2484,7 @@ mobileBookClose.addEventListener(
   closeMobileBook
 );
  
-  const closePitchButton = document.getElementById("close-pitch");
-
-if (closePitchButton) {
-  closePitchButton.addEventListener("click", function() {
-    pitchModal.classList.remove("open");
-    document.body.style.overflow = "auto";
-  });
-}
+ 
  
 </script>
 
