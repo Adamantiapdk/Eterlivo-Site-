@@ -2623,21 +2623,6 @@ maxHeight: 788,
   );
 }
 
-
-
-
-window.addEventListener("orientationchange", function() {
-
-  if (!mobileBookModal.classList.contains("open")) {
-    return;
-  }
-
-  setTimeout(function() {
-    createMobileBook();
-  }, 250);
-
-});
-
 function openMobileBook() {
 
   mobileBookModal.classList.add("open");
