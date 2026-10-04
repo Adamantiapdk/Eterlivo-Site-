@@ -2487,21 +2487,16 @@ pitchPageFlip.loadFromImages(
   );
 
 }
-
 function openPitchBook(event) {
 
   if (event) {
     event.preventDefault();
   }
 
-  /* MOBILE */
-  if (isMobilePitchView()) {
+  pitchModal.classList.add("open");
 
-    openMobileBook();
-
-    return;
-  }
-
+  document.body.style.overflow = "hidden";
+}
   /* DESKTOP */
   pitchModal.classList.add("open");
 
