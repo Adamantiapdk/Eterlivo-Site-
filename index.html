@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
 <head>
 
   <meta charset="UTF-8">
@@ -1146,7 +1146,204 @@
       }
 
     }
+/* =========================
+   PITCH FLIPBOOK
+========================= */
 
+.pitch-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+
+  background: rgba(28, 19, 12, 0.92);
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  overflow: auto;
+}
+
+.pitch-modal.open {
+  display: flex;
+}
+
+.pitch-modal-inner {
+  position: relative;
+
+  width: min(1200px, 100%);
+  min-height: 90vh;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #efe9dd;
+
+  border-radius: 18px;
+
+  padding: 55px 20px 25px;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.4);
+}
+
+.pitch-close {
+  position: absolute;
+
+  top: 14px;
+  right: 18px;
+
+  width: 44px;
+  height: 44px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: var(--brown);
+  color: var(--ivory);
+
+  font-size: 28px;
+
+  cursor: pointer;
+
+  line-height: 1;
+}
+
+.pitch-close:hover {
+  background: var(--gold);
+}
+
+.pitch-book-header {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 20px;
+
+  flex-wrap: wrap;
+
+  margin-bottom: 15px;
+
+  color: var(--brown);
+}
+
+.pitch-book-header h2 {
+  margin: 0;
+
+  font-family: "Noto Serif", serif;
+  font-weight: 800;
+
+  font-size:
+    clamp(20px, 3vw, 30px);
+}
+
+#pitch-page-counter {
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 700;
+
+  color: var(--gold);
+}
+
+.pitch-book-area {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 15px;
+
+  min-width: 0;
+}
+
+#pitch-book {
+  margin: 0 auto;
+}
+
+.pitch-arrow {
+  width: 48px;
+  height: 48px;
+
+  flex: 0 0 auto;
+
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+
+  background: var(--cream-light);
+  color: var(--brown);
+
+  font-size: 32px;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s;
+}
+
+.pitch-arrow:hover {
+  background: var(--brown);
+  color: var(--ivory);
+
+  transform: scale(1.05);
+}
+
+.pitch-mobile-hint {
+  margin-top: 14px;
+
+  font-family: "Noto Sans", sans-serif;
+
+  font-size: 13px;
+
+  color: #7b6957;
+
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+
+  .pitch-modal {
+    padding: 8px;
+  }
+
+  .pitch-modal-inner {
+    min-height: 96vh;
+
+    padding:
+      55px 5px 20px;
+
+    border-radius: 10px;
+  }
+
+  .pitch-book-area {
+    gap: 4px;
+  }
+
+  .pitch-arrow {
+    width: 38px;
+    height: 38px;
+
+    font-size: 25px;
+  }
+
+  .pitch-book-header h2 {
+    font-size: 18px;
+  }
+
+}
   </style>
 
 </head>
@@ -1294,16 +1491,17 @@
     </a>
 
 
-    <a
-      href="#pitch"
+  <a
+  href="#"
+  id="open-pitch"
 
-      data-en="Pitch"
-      data-de="Pitch"
-      data-gr="Pitch">
+  data-en="Pitch"
+  data-de="Pitch"
+  data-gr="Pitch">
 
-      Pitch
+  Pitch
 
-    </a>
+</a>
 
 
     <a
@@ -1895,7 +2093,60 @@
 
 </section>
 
+<!-- =========================
+     PITCH FLIPBOOK
+========================= -->
 
+<div id="pitch-modal" class="pitch-modal">
+
+  <div class="pitch-modal-inner">
+
+    <button
+      id="close-pitch"
+      class="pitch-close"
+      aria-label="Close pitch">
+      ×
+    </button>
+
+    <div class="pitch-book-header">
+
+      <h2 id="pitch-book-title">
+        ETERLIVO — Pitch
+      </h2>
+
+      <div id="pitch-page-counter">
+        1 / 16
+      </div>
+
+    </div>
+
+    <div class="pitch-book-area">
+
+      <button
+        id="pitch-prev"
+        class="pitch-arrow"
+        aria-label="Previous page">
+        ‹
+      </button>
+
+      <div id="pitch-book"></div>
+
+      <button
+        id="pitch-next"
+        class="pitch-arrow"
+        aria-label="Next page">
+        ›
+      </button>
+
+    </div>
+
+    <div class="pitch-mobile-hint">
+      Swipe or tap the page to turn
+    </div>
+
+  </div>
+
+</div>
 
 <footer>
 
