@@ -2497,28 +2497,7 @@ function openPitchBook(event) {
 
   document.body.style.overflow = "hidden";
 }
-  /* DESKTOP */
-  pitchModal.classList.add("open");
 
-  document.body.style.overflow = "hidden";
-
-  const bookElement =
-    document.getElementById("pitch-book");
-
-  if (pitchPageFlip) {
-
-    pitchPageFlip.destroy();
-
-    pitchPageFlip = null;
-
-    bookElement.innerHTML = "";
-  }
-
-  createPitchBook();
-
-  pitchCounter.textContent =
-    "1 / " + getPitchImages().length;
-}
 
 function closePitchBook() {
 
