@@ -1480,8 +1480,12 @@
   }
 
   .pitch-modal-inner {
+    position: fixed;
+    inset: 0;
+
     width: 100vw;
-    min-height: 100vh;
+    height: 100dvh;
+    min-height: 0;
 
     padding: 0;
 
@@ -1490,20 +1494,24 @@
     background: #17110d;
   }
 
-  .pitch-book-header {
-    display: none;
-  }
-
-  .pitch-mobile-hint {
-    display: none;
-  }
-
   .heyzine-wrapper {
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
+
+    margin: 0;
 
     border-radius: 0;
     box-shadow: none;
+  }
+
+  .heyzine-wrapper iframe {
+    width: 100vw;
+    height: 100dvh;
+  }
+
+  .pitch-book-header,
+  .pitch-mobile-hint {
+    display: none;
   }
 
   .pitch-close {
