@@ -3267,7 +3267,68 @@ document.addEventListener(
 
   }
 );
- 
+ /* =========================
+   CONTACT
+========================= */
+
+const contactModalEl =
+  document.getElementById("contact-modal");
+
+const closeContactEl =
+  document.getElementById("close-contact");
+
+
+function openContactModal() {
+
+  contactModalEl.classList.add("open");
+
+  document.body.style.overflow = "hidden";
+}
+
+
+function closeContactModal() {
+
+  contactModalEl.classList.remove("open");
+
+  document.body.style.overflow = "auto";
+}
+
+
+if (closeContactEl) {
+
+  closeContactEl.addEventListener(
+    "click",
+    closeContactModal
+  );
+
+}
+
+
+contactModalEl.addEventListener(
+  "click",
+  function(event) {
+
+    if (event.target === contactModalEl) {
+      closeContactModal();
+    }
+
+  }
+);
+
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      event.key === "Escape" &&
+      contactModalEl.classList.contains("open")
+    ) {
+      closeContactModal();
+    }
+
+  }
+);
 </script>
 
 
