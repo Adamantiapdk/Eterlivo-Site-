@@ -1275,6 +1275,194 @@
   }
 
 }
+  /* =========================
+   MOBILE PITCH READER
+========================= */
+
+.mobile-pitch-reader {
+  position: fixed;
+  inset: 0;
+
+  z-index: 1000000;
+
+  display: none;
+
+  flex-direction: column;
+
+  background: #18120d;
+
+  overflow: hidden;
+}
+
+
+.mobile-pitch-reader.open {
+  display: flex;
+}
+
+
+.mobile-reader-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  padding:
+    10px 12px;
+
+  background:
+    #f3ede2;
+
+  border-bottom:
+    1px solid #c9baa3;
+}
+
+
+.mobile-reader-close {
+  width: 42px;
+  height: 42px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: var(--brown);
+  color: white;
+
+  font-size: 26px;
+
+  cursor: pointer;
+}
+
+
+#mobile-reader-counter {
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 700;
+
+  color: var(--brown);
+
+  white-space: nowrap;
+}
+
+
+.mobile-reader-zoom-controls {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+}
+
+
+.mobile-reader-zoom-controls button {
+  min-width: 38px;
+  height: 38px;
+
+  border:
+    1px solid var(--gold);
+
+  border-radius: 6px;
+
+  background:
+    #fffaf1;
+
+  color:
+    var(--brown);
+
+  font-family:
+    "Noto Sans",
+    sans-serif;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+#mobile-zoom-reset {
+  min-width: 58px;
+  font-size: 11px;
+}
+
+
+.mobile-reader-stage {
+  flex: 1;
+
+  overflow: auto;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  padding: 12px;
+
+  -webkit-overflow-scrolling: touch;
+
+  touch-action: pan-x pan-y;
+}
+
+
+.mobile-reader-stage img {
+  display: block;
+
+  width: 100%;
+  max-width: none;
+
+  height: auto;
+
+  transform-origin: top center;
+
+  user-select: none;
+
+  -webkit-user-drag: none;
+
+  transition:
+    transform 0.18s ease;
+}
+
+
+.mobile-reader-controls {
+  display: flex;
+  justify-content: space-between;
+
+  padding:
+    10px 16px 14px;
+
+  background:
+    #f3ede2;
+
+  border-top:
+    1px solid #c9baa3;
+}
+
+
+.mobile-reader-controls button {
+  width: 58px;
+  height: 44px;
+
+  border:
+    1px solid var(--gold);
+
+  border-radius: 8px;
+
+  background:
+    var(--brown);
+
+  color: white;
+
+  font-size: 28px;
+
+  cursor: pointer;
+}
+
+
+/* Hidden on larger screens */
+
+@media (min-width: 701px) {
+
+  .mobile-pitch-reader {
+    display: none !important;
+  }
+
+}
   </style>
 
 </head>
@@ -1908,7 +2096,59 @@
   </div>
 
 </div>
+<!-- =========================
+     MOBILE PITCH READER
+========================= -->
 
+<div id="mobile-pitch-reader" class="mobile-pitch-reader">
+
+  <div class="mobile-reader-topbar">
+
+    <button id="mobile-reader-close" class="mobile-reader-close">
+      ×
+    </button>
+
+    <div id="mobile-reader-counter">
+      1 / 16
+    </div>
+
+    <div class="mobile-reader-zoom-controls">
+
+      <button id="mobile-zoom-out">−</button>
+
+      <button id="mobile-zoom-reset">100%</button>
+
+      <button id="mobile-zoom-in">+</button>
+
+    </div>
+
+  </div>
+
+
+  <div id="mobile-reader-stage" class="mobile-reader-stage">
+
+    <img
+      id="mobile-reader-image"
+      src=""
+      alt="ETERLIVO Pitch page"
+    >
+
+  </div>
+
+
+  <div class="mobile-reader-controls">
+
+    <button id="mobile-prev">
+      ‹
+    </button>
+
+    <button id="mobile-next">
+      ›
+    </button>
+
+  </div>
+
+</div>
 <footer>
 
   © 2026 ETERLIVO
@@ -2227,24 +2467,97 @@ function openPitchBook(event) {
     event.preventDefault();
   }
 
-  pitchModal.classList.add("open");
-  document.body.style.overflow = "hidden";
+
+  if (isMobilePitchView()) {
+
+    openMobilePitchReader();
+
+    return;
+  }
+
+
+  pitchModal.classList.add(
+    "open"
+  );
+
+
+  document.body.style.overflow =
+    "hidden";
+
 
   const bookElement =
-    document.getElementById("pitch-book");
+    document.getElementById(
+      "pitch-book"
+    );
+
 
   if (pitchPageFlip) {
+
     pitchPageFlip.destroy();
+
     pitchPageFlip = null;
+
     bookElement.innerHTML = "";
+
   }
+
 
   createPitchBook();
 
-  pitchCounter.textContent =
-    "1 / " + getPitchImages().length;
-}
 
+  pitchCounter.textContent =
+    "1 / " +
+    getPitchImages().length;
+
+}function openPitchBook(event) {
+
+  if (event) {
+    event.preventDefault();
+  }
+
+
+  if (isMobilePitchView()) {
+
+    openMobilePitchReader();
+
+    return;
+  }
+
+
+  pitchModal.classList.add(
+    "open"
+  );
+
+
+  document.body.style.overflow =
+    "hidden";
+
+
+  const bookElement =
+    document.getElementById(
+      "pitch-book"
+    );
+
+
+  if (pitchPageFlip) {
+
+    pitchPageFlip.destroy();
+
+    pitchPageFlip = null;
+
+    bookElement.innerHTML = "";
+
+  }
+
+
+  createPitchBook();
+
+
+  pitchCounter.textContent =
+    "1 / " +
+    getPitchImages().length;
+
+}
 
 function closePitchBook() {
 
@@ -2341,6 +2654,324 @@ document.addEventListener(
     }
 
   }
+);
+  /* =========================
+   MOBILE PITCH READER
+========================= */
+
+const mobilePitchReader =
+  document.getElementById(
+    "mobile-pitch-reader"
+  );
+
+const mobileReaderImage =
+  document.getElementById(
+    "mobile-reader-image"
+  );
+
+const mobileReaderCounter =
+  document.getElementById(
+    "mobile-reader-counter"
+  );
+
+const mobileReaderClose =
+  document.getElementById(
+    "mobile-reader-close"
+  );
+
+const mobilePrev =
+  document.getElementById(
+    "mobile-prev"
+  );
+
+const mobileNext =
+  document.getElementById(
+    "mobile-next"
+  );
+
+const mobileZoomIn =
+  document.getElementById(
+    "mobile-zoom-in"
+  );
+
+const mobileZoomOut =
+  document.getElementById(
+    "mobile-zoom-out"
+  );
+
+const mobileZoomReset =
+  document.getElementById(
+    "mobile-zoom-reset"
+  );
+
+const mobileReaderStage =
+  document.getElementById(
+    "mobile-reader-stage"
+  );
+
+
+let mobileCurrentPage = 0;
+let mobileZoom = 1;
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+
+function isMobilePitchView() {
+
+  return window.innerWidth <= 700;
+
+}
+
+
+function getCurrentPitchImages() {
+
+  const lang =
+    document.documentElement.lang;
+
+  if (lang === "de") {
+    return pitchImagesDE;
+  }
+
+  return pitchImagesEN;
+}
+
+
+function updateMobilePitchPage() {
+
+  const images =
+    getCurrentPitchImages();
+
+  mobileReaderImage.src =
+    images[mobileCurrentPage];
+
+  mobileReaderCounter.textContent =
+    (mobileCurrentPage + 1) +
+    " / " +
+    images.length;
+
+  resetMobileZoom();
+
+  mobileReaderStage.scrollTop = 0;
+  mobileReaderStage.scrollLeft = 0;
+
+}
+
+
+function openMobilePitchReader() {
+
+  mobileCurrentPage = 0;
+
+  updateMobilePitchPage();
+
+  mobilePitchReader.classList.add(
+    "open"
+  );
+
+  document.body.style.overflow =
+    "hidden";
+
+}
+
+
+function closeMobilePitchReader() {
+
+  mobilePitchReader.classList.remove(
+    "open"
+  );
+
+  document.body.style.overflow =
+    "auto";
+
+}
+
+
+function nextMobilePitchPage() {
+
+  const images =
+    getCurrentPitchImages();
+
+  if (
+    mobileCurrentPage <
+    images.length - 1
+  ) {
+
+    mobileCurrentPage++;
+
+    updateMobilePitchPage();
+
+  }
+
+}
+
+
+function previousMobilePitchPage() {
+
+  if (
+    mobileCurrentPage > 0
+  ) {
+
+    mobileCurrentPage--;
+
+    updateMobilePitchPage();
+
+  }
+
+}
+
+
+function applyMobileZoom() {
+
+  mobileReaderImage.style.transform =
+    "scale(" + mobileZoom + ")";
+
+  mobileReaderImage.style.width =
+    (100 * mobileZoom) + "%";
+
+  mobileZoomReset.textContent =
+    Math.round(
+      mobileZoom * 100
+    ) + "%";
+
+}
+
+
+function resetMobileZoom() {
+
+  mobileZoom = 1;
+
+  mobileReaderImage.style.transform =
+    "scale(1)";
+
+  mobileReaderImage.style.width =
+    "100%";
+
+  mobileZoomReset.textContent =
+    "100%";
+
+}
+
+
+mobileZoomIn.addEventListener(
+  "click",
+  function() {
+
+    mobileZoom =
+      Math.min(
+        mobileZoom + 0.25,
+        3
+      );
+
+    applyMobileZoom();
+
+  }
+);
+
+
+mobileZoomOut.addEventListener(
+  "click",
+  function() {
+
+    mobileZoom =
+      Math.max(
+        mobileZoom - 0.25,
+        1
+      );
+
+    applyMobileZoom();
+
+  }
+);
+
+
+mobileZoomReset.addEventListener(
+  "click",
+  resetMobileZoom
+);
+
+
+mobileReaderClose.addEventListener(
+  "click",
+  closeMobilePitchReader
+);
+
+
+mobileNext.addEventListener(
+  "click",
+  nextMobilePitchPage
+);
+
+
+mobilePrev.addEventListener(
+  "click",
+  previousMobilePitchPage
+);
+
+
+/* Double tap / click to zoom */
+
+mobileReaderImage.addEventListener(
+  "click",
+  function() {
+
+    if (mobileZoom === 1) {
+
+      mobileZoom = 1.75;
+
+    } else {
+
+      mobileZoom = 1;
+
+    }
+
+    applyMobileZoom();
+
+  }
+);
+
+
+/* Swipe */
+
+mobileReaderStage.addEventListener(
+  "touchstart",
+  function(event) {
+
+    touchStartX =
+      event.changedTouches[0].screenX;
+
+  },
+  { passive: true }
+);
+
+
+mobileReaderStage.addEventListener(
+  "touchend",
+  function(event) {
+
+    touchEndX =
+      event.changedTouches[0].screenX;
+
+    const distance =
+      touchEndX - touchStartX;
+
+
+    if (Math.abs(distance) < 50) {
+      return;
+    }
+
+
+    if (distance < 0) {
+
+      nextMobilePitchPage();
+
+    } else {
+
+      previousMobilePitchPage();
+
+    }
+
+  },
+  { passive: true }
 );
 </script>
 
