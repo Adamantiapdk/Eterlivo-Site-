@@ -2611,7 +2611,14 @@ mobileBookClose.addEventListener(
   closeMobileBook
 );
  
-  
+  const closePitchButton = document.getElementById("close-pitch");
+
+if (closePitchButton) {
+  closePitchButton.addEventListener("click", function() {
+    pitchModal.classList.remove("open");
+    document.body.style.overflow = "auto";
+  });
+}
  
 </script>
 
