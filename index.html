@@ -1834,66 +1834,11 @@
   <div class="menu">
 
 
-    <a
-      href="#home"
 
-      data-en="Home"
-      data-de="Startseite"
-      data-gr="Αρχική">
-
-      Home
-
-    </a>
+      
 
 
-  <a
-  href="#"
-  id="open-pitch"
-
-  data-en="Pitch"
-  data-de="Pitch"
-  data-gr="Pitch">
-
-  Pitch
-
-</a>
-
-
-    <a
-      href="#chapters"
-
-      data-en="Chapters"
-      data-de="Kapitel"
-      data-gr="Κεφάλαια">
-
-      Chapters
-
-    </a>
-
-
-    <a
-      href="#sample"
-
-      data-en="Sample"
-      data-de="Leseprobe"
-      data-gr="Δείγμα">
-
-      Sample
-
-    </a>
-
-
-    <a
-      href="#contact"
-
-      data-en="Contact"
-      data-de="Kontakt"
-      data-gr="Επικοινωνία">
-
-      Contact
-
-    </a>
-
+    
 
     <div class="language-menu">
 
@@ -2675,6 +2620,11 @@ menuPitch.addEventListener(
 
   }
 );
+  const menuPitch = document.getElementById("menu-pitch");
+
+menuPitch.addEventListener("click", function(event) {
+  openPitchBook(event);
+});
 </script>
 
 
