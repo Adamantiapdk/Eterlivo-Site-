@@ -1896,9 +1896,10 @@
 
       <!-- PITCH -->
 
-      <button
-        class="menu-card"
-        id="menu-pitch">
+     <button
+  class="menu-card"
+  id="menu-pitch"
+  onclick="openPitchBook(event)">
 
         <span
           class="menu-card-title"
@@ -2610,13 +2611,7 @@ mobileBookClose.addEventListener(
   closeMobileBook
 );
  
-  const menuPitch = document.getElementById("menu-pitch");
-
-if (menuPitch) {
-  menuPitch.addEventListener("click", function(event) {
-    openPitchBook(event);
-  });
-}
+  
  
 </script>
 
