@@ -1849,6 +1849,169 @@
     line-height: 1.7;
   }
 }
+    /* =========================
+   SAMPLE MODAL
+========================= */
+
+.sample-modal {
+  position: fixed;
+  inset: 0;
+
+  z-index: 1000000;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(28, 19, 12, 0.92);
+
+  overflow: auto;
+}
+
+.sample-modal.open {
+  display: flex;
+}
+
+.sample-modal-inner {
+  position: relative;
+
+  width: min(1100px, 100%);
+  height: min(900px, 92vh);
+
+  display: flex;
+  flex-direction: column;
+
+  background: var(--ivory);
+
+  border:
+    1px solid var(--gold-light);
+
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 22px 60px
+    rgba(0, 0, 0, 0.35);
+}
+
+.sample-close {
+  position: absolute;
+
+  top: 12px;
+  right: 14px;
+
+  z-index: 10;
+
+  width: 44px;
+  height: 44px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: var(--brown);
+
+  color: var(--ivory);
+
+  font-size: 28px;
+
+  cursor: pointer;
+}
+
+.sample-close:hover {
+  background: var(--gold);
+}
+
+.sample-header {
+  flex: 0 0 auto;
+
+  padding:
+    24px 70px
+    18px;
+
+  text-align: center;
+
+  border-bottom:
+    1px solid var(--border);
+
+  background:
+    var(--cream-light);
+}
+
+.sample-header h2 {
+  margin: 0;
+
+  font-family:
+    "Noto Serif",
+    serif;
+
+  font-size:
+    clamp(24px, 4vw, 36px);
+
+  font-weight: 800;
+
+  color: var(--brown);
+}
+
+.sample-reader {
+  flex: 1;
+
+  min-height: 0;
+
+  background: #d8d2c8;
+}
+
+#sample-frame {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  border: none;
+
+  background: white;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+  .sample-modal {
+    padding: 0;
+  }
+
+  .sample-modal-inner {
+    width: 100vw;
+    height: 100dvh;
+
+    border-radius: 0;
+    border: none;
+  }
+
+  .sample-header {
+    padding:
+      18px 60px
+      14px;
+  }
+
+  .sample-header h2 {
+    font-size: 22px;
+  }
+
+  .sample-close {
+    top: 8px;
+    right: 8px;
+
+    width: 40px;
+    height: 40px;
+
+    font-size: 25px;
+  }
+}
   </style>
 
 </head>
@@ -2098,10 +2261,11 @@
 
       <!-- READ A SAMPLE -->
 
-      <button
-        class="menu-card"
-        id="menu-sample">
-
+    <button
+  class="menu-card"
+  id="menu-sample"
+  onclick="openSampleModal()">
+       
         <span
           class="menu-card-title"
           data-en="READ A SAMPLE"
@@ -2260,6 +2424,45 @@
       </h2>
 
       <div id="story-text"></div>
+
+    </div>
+
+  </div>
+
+</div>
+  <!-- =========================
+     SAMPLE MODAL
+========================= -->
+
+<div id="sample-modal" class="sample-modal">
+
+  <div class="sample-modal-inner">
+
+    <button
+      id="close-sample"
+      class="sample-close"
+      aria-label="Close sample">
+      ×
+    </button>
+
+    <div class="sample-header">
+
+      <h2
+        data-en="READ A SAMPLE"
+        data-de="LESEPROBE"
+        data-gr="READ A SAMPLE">
+        READ A SAMPLE
+      </h2>
+
+    </div>
+
+    <div class="sample-reader">
+
+      <iframe
+        id="sample-frame"
+        src=""
+        title="ETERLIVO Reading Sample">
+      </iframe>
 
     </div>
 
@@ -2787,6 +2990,83 @@ document.addEventListener(
       storyModalEl.classList.contains("open")
     ) {
       closeStoryModal();
+    }
+
+  }
+);
+/* =========================
+   READ A SAMPLE
+========================= */
+
+const sampleModalEl =
+  document.getElementById("sample-modal");
+
+const sampleFrameEl =
+  document.getElementById("sample-frame");
+
+const closeSampleEl =
+  document.getElementById("close-sample");
+
+
+function openSampleModal() {
+
+  const lang =
+    document.documentElement.lang || "en";
+
+  if (lang === "de") {
+    sampleFrameEl.src = "sample-de.pdf";
+  } else {
+    /* English + Greek for now */
+    sampleFrameEl.src = "sample-en.pdf";
+  }
+
+  sampleModalEl.classList.add("open");
+
+  document.body.style.overflow = "hidden";
+}
+
+
+function closeSampleModal() {
+
+  sampleModalEl.classList.remove("open");
+
+  document.body.style.overflow = "auto";
+
+  sampleFrameEl.src = "";
+}
+
+
+if (closeSampleEl) {
+
+  closeSampleEl.addEventListener(
+    "click",
+    closeSampleModal
+  );
+
+}
+
+
+sampleModalEl.addEventListener(
+  "click",
+  function(event) {
+
+    if (event.target === sampleModalEl) {
+      closeSampleModal();
+    }
+
+  }
+);
+
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      event.key === "Escape" &&
+      sampleModalEl.classList.contains("open")
+    ) {
+      closeSampleModal();
     }
 
   }
