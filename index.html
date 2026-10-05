@@ -2233,6 +2233,7 @@
   }
 
   .pitch-book-header {
+    display: grid !important;
     flex: 0 0 auto;
 
     grid-template-columns:
@@ -2688,13 +2689,12 @@
     </button>
 
     <div class="story-content">
-
-      <h2
-        data-en="THE STORY"
-        data-de="DIE GESCHICHTE"
-        data-gr="THE STORY">
-        THE STORY
-      </h2>
+<h2
+  data-en="SYNOPSIS"
+  data-de="SYNOPSIS"
+  data-gr="ΣΥΝΟΨΗ">
+  SYNOPSIS
+</h2>
 
       <div id="story-text"></div>
 
@@ -2720,12 +2720,12 @@
 
     <div class="sample-header">
 
-      <h2
-        data-en="READ A SAMPLE"
-        data-de="LESEPROBE"
-        data-gr="READ A SAMPLE">
-        READ A SAMPLE
-      </h2>
+     <h2
+  data-en="READING SAMPLE"
+  data-de="LESEPROBE"
+  data-gr="ΕΝΔΕΙΚΤΙΚΑ ΚΕΦΑΛΑΙΑ">
+  READING SAMPLE
+</h2>
 
     </div>
 
@@ -3027,16 +3027,16 @@ function openPitchBook(event) {
   const lang =
     document.documentElement.lang || "en";
 
-  if (lang === "de") {
-    pitchBookTitleEl.textContent =
-      "ETERLIVO — Exposé";
-  } else if (lang === "gr") {
-    pitchBookTitleEl.textContent =
-      "ETERLIVO — ΣΥΝΟΨΗ";
-  } else {
-    pitchBookTitleEl.textContent =
-      "ETERLIVO — Pitch";
-  }
+ if (lang === "de") {
+  pitchBookTitleEl.textContent =
+    "EXPOSÉ";
+} else if (lang === "gr") {
+  pitchBookTitleEl.textContent =
+    "ΣΥΝΤΟΜΗ ΠΑΡΟΥΣΙΑΣΗ";
+} else {
+  pitchBookTitleEl.textContent =
+    "PITCH";
+}
 
   pitchModal.classList.add("open");
 
