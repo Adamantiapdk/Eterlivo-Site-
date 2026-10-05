@@ -1275,176 +1275,7 @@
   }
 
 }
-  /* =========================
-   MOBILE FULLSCREEN BOOK
-========================= */
-
-.mobile-book-modal {
-  position: fixed;
-  inset: 0;
-
-  z-index: 1000000;
-
-  display: none;
-
-  align-items: center;
-  justify-content: center;
-
-  background: #17110d;
-
-  overflow: hidden;
-}
-
-.mobile-book-modal.open {
-  display: flex;
-}
-#mobile-book {
-  width: 100vw;
-  height: 100vh;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
-}
-   
-.mobile-book-close {
-  position: fixed;
-
-  top: 14px;
-  right: 14px;
-
-  z-index: 1000002;
-
-  width: 42px;
-  height: 42px;
-
-  border: none;
-  border-radius: 50%;
-
-  background: rgba(47, 27, 13, 0.88);
-
-  color: white;
-
-  font-size: 27px;
-  line-height: 1;
-
-  cursor: pointer;
-}
-
-.mobile-book-counter {
-  position: fixed;
-
-  bottom: 14px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  z-index: 1000002;
-
-  padding: 6px 12px;
-
-  border-radius: 20px;
-
-  background: rgba(47, 27, 13, 0.78);
-
-  color: white;
-
-  font-family: "Noto Sans", sans-serif;
-
-  font-size: 12px;
-  font-weight: 700;
-}
-
-@media (min-width: 951px) {
-  .mobile-book-modal {
-    display: none !important;
-  }
-
-}
-    @media (max-width: 700px) and (orientation: landscape) {
-
-  #mobile-book {
-    width: 100vw;
-    height: 100vh;
-  }
-
-  .mobile-book-close {
-    top: 8px;
-    right: 8px;
-  }
-
-  .mobile-book-counter {
-    bottom: 8px;
-  }
-}
-    /* Rotate hint */
-
-.mobile-rotate-hint {
-  position: fixed;
-  left: 50%;
-  bottom: 70px;
-  transform: translateX(-50%);
-  z-index: 1000003;
-
-  padding: 10px 16px;
-
-  border-radius: 20px;
-
-  background: rgba(47, 27, 13, 0.88);
-  color: white;
-
-  font-family: "Noto Sans", sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-
-  white-space: nowrap;
-}
-
-
-/* Portrait */
-
-@media (max-width: 700px) and (orientation: portrait) {
-
-  #mobile-book {
-    width: 100vw;
-    height: 100vh;
-  }
-
-}
-
-
-/* Landscape */
-
-@media (max-width: 950px) and (orientation: landscape) {
-
-  .mobile-book-modal {
-    overflow: hidden;
-    align-items: center;
-    justify-content: center;
-  }
-
-  #mobile-book {
-    width: 92vw;
-    height: 92vh;
-    margin: auto;
-    overflow: hidden;
-  }
-
-  .mobile-rotate-hint {
-    display: none;
-  }
-
-  .mobile-book-close {
-    top: 8px;
-    right: 8px;
-  }
-
-  .mobile-book-counter {
-    bottom: 8px;
-  }
-}
+ 
     /* =========================
    HEYZINE PITCH EMBED
 ========================= */
@@ -2327,6 +2158,154 @@
   }
 
 }
+    .pitch-nav-button {
+  width: 46px;
+  height: 46px;
+
+  border: 1px solid var(--gold-light);
+  border-radius: 50%;
+
+  background: var(--brown);
+  color: var(--ivory);
+
+  font-size: 24px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.2s;
+}
+
+.pitch-nav-button:hover {
+  background: var(--gold);
+  transform: translateY(-1px);
+}
+
+.pitch-book-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 14px;
+}
+
+@media (max-width: 700px) {
+  .pitch-nav-button {
+    width: 40px;
+    height: 40px;
+    font-size: 21px;
+  }
+
+  .pitch-book-header {
+    gap: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  #pitch-book-title {
+    font-size: 18px;
+  }
+}
+    /* =========================
+   NEW MOBILE PITCH READER
+========================= */
+
+@media (max-width: 800px) {
+
+  .pitch-modal {
+    padding: 0;
+  }
+
+  .pitch-modal-inner {
+    width: 100vw;
+    height: 100dvh;
+
+    border-radius: 0;
+    border: none;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--ivory);
+  }
+
+  .pitch-book-header {
+    flex: 0 0 auto;
+
+    grid-template-columns:
+      auto
+      1fr
+      auto
+      auto;
+
+    padding: 10px 12px;
+
+    background: var(--cream-light);
+
+    border-bottom:
+      1px solid var(--border);
+  }
+
+  #pitch-book-title {
+    font-size: 17px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+  }
+
+  #pitch-page-counter {
+    font-size: 14px;
+  }
+
+  .pitch-reader {
+    flex: 1;
+
+    min-height: 0;
+
+    padding: 10px;
+
+    background: var(--cream);
+  }
+
+  .pitch-page {
+    width: 100%;
+
+    max-width: none;
+
+    aspect-ratio: 16 / 9;
+
+    border-radius: 8px;
+
+    box-shadow:
+      0 10px 25px
+      rgba(0,0,0,.18);
+  }
+
+  .pitch-page img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+  }
+
+  .pitch-close {
+    position: fixed;
+
+    top: 8px;
+    right: 8px;
+
+    z-index: 1000002;
+  }
+
+}
   </style>
 
 </head>
@@ -2655,17 +2634,29 @@
       ×
     </button>
 
-    <div class="pitch-book-header">
+   <div class="pitch-book-header">
 
-      <h2 id="pitch-book-title">
-        ETERLIVO — Pitch
-      </h2>
+  <button
+    class="pitch-nav-button"
+    onclick="showPitchSlideV2(pitchCurrentSlideV2 - 1)">
+    ←
+  </button>
 
-      <div id="pitch-page-counter">
-        1 / 16
-      </div>
+  <h2 id="pitch-book-title">
+    ETERLIVO — Pitch
+  </h2>
 
-    </div>
+  <div id="pitch-page-counter">
+    1 / 16
+  </div>
+
+  <button
+    class="pitch-nav-button"
+    onclick="showPitchSlideV2(pitchCurrentSlideV2 + 1)">
+    →
+  </button>
+
+</div>
 
  <div class="pitch-reader">
 
@@ -2680,36 +2671,7 @@
   </div>
 
 </div>
-<!-- =========================
-     MOBILE PITCH READER
-========================= -->
 
-<!-- =========================
-     MOBILE FULLSCREEN BOOK
-========================= -->
-
-<div id="mobile-book-modal" class="mobile-book-modal">
-
-  <button
-    id="mobile-book-close"
-    class="mobile-book-close"
-    aria-label="Close"
-  >
-    ×
-  </button>
-<div class="mobile-rotate-hint">
-  Rotate your phone to read the Pitch
-</div>
-  <div id="mobile-book"></div>
-
-  <div
-    id="mobile-book-counter"
-    class="mobile-book-counter"
-  >
-    1 / 16
-  </div>
-
-</div>
   <!-- =========================
      STORY MODAL
 ========================= -->
@@ -3054,9 +3016,26 @@ const closePitchButton =
 
 
 function openPitchBook(event) {
+  if (event) event.preventDefault();
 
-  if (event) {
-    event.preventDefault();
+  pitchCurrentSlideV2 = 1;
+  showPitchSlideV2(1);
+
+  const pitchBookTitleEl =
+    document.getElementById("pitch-book-title");
+
+  const lang =
+    document.documentElement.lang || "en";
+
+  if (lang === "de") {
+    pitchBookTitleEl.textContent =
+      "ETERLIVO — Exposé";
+  } else if (lang === "gr") {
+    pitchBookTitleEl.textContent =
+      "ETERLIVO — ΣΥΝΟΨΗ";
+  } else {
+    pitchBookTitleEl.textContent =
+      "ETERLIVO — Pitch";
   }
 
   pitchModal.classList.add("open");
@@ -3132,91 +3111,6 @@ function isMobilePitchView() {
 }
 
 
-function createMobileBook() {
-
-  if (mobilePageFlip) {
-    mobilePageFlip.destroy();
-    mobilePageFlip = null;
-    mobileBookElement.innerHTML = "";
-  }
-
-  const images = getPitchImages();
-
-  mobilePageFlip = new St.PageFlip(
-    mobileBookElement,
-    {
-   width: 1200,
-height: 675,
-
-size: "stretch",
-
-minWidth: 320,
-maxWidth: 1200,
-
-minHeight: 180,
-maxHeight: 675,
-
-      showCover: true,
-usePortrait: true,
-autoSize: true,
-
-      mobileScrollSupport: false,
-
-      maxShadowOpacity: 0.45,
-
-      flippingTime: 750
-    }
-  );
-
-  mobilePageFlip.loadFromImages(images);
-
-  mobileBookCounter.textContent =
-    "1 / " + images.length;
-
-  mobilePageFlip.on(
-    "flip",
-    function(event) {
-
-      mobileBookCounter.textContent =
-        (Number(event.data) + 1) +
-        " / " +
-        images.length;
-
-    }
-  );
-}
-
-function openMobileBook() {
-
-  mobileBookModal.classList.add("open");
-
-  document.body.style.overflow = "hidden";
-
-  setTimeout(function() {
-    createMobileBook();
-  }, 80);
-}
-
-
-function closeMobileBook() {
-
-  mobileBookModal.classList.remove("open");
-
-  document.body.style.overflow = "auto";
-
-  if (mobilePageFlip) {
-    mobilePageFlip.destroy();
-    mobilePageFlip = null;
-    mobileBookElement.innerHTML = "";
-  }
-}
-
-
-mobileBookClose.addEventListener(
-  "click",
-  closeMobileBook
-);
- 
  
  /* =========================
    THE STORY
@@ -3463,6 +3357,77 @@ if (lang === "de") {
 
   document.body.style.overflow =
     "hidden";
+}
+  /* =========================
+   PITCH SLIDES
+========================= */
+
+const pitchPageElV2 =
+  document.getElementById("pitch-page");
+
+const pitchCounterElV2 =
+  document.getElementById("pitch-page-counter");
+
+let pitchCurrentSlideV2 = 1;
+
+
+function getPitchImagesV2() {
+
+  const lang =
+    document.documentElement.lang || "en";
+
+  let prefix = "pitch-en";
+
+  if (lang === "de") {
+    prefix = "pitch-de";
+  }
+
+  const images = [];
+
+  for (let i = 1; i <= 16; i++) {
+
+    const number =
+      String(i).padStart(2, "0");
+
+    images.push(
+      `${prefix}-${number}.jpg`
+    );
+
+  }
+
+  return images;
+}
+
+
+function showPitchSlideV2(slideNumber) {
+
+  const images =
+    getPitchImagesV2();
+
+  pitchCurrentSlideV2 =
+    Math.max(
+      1,
+      Math.min(slideNumber, images.length)
+    );
+
+  const image =
+    images[pitchCurrentSlideV2 - 1];
+
+  pitchPageElV2.innerHTML = `
+    <img
+      src="${image}"
+      alt="ETERLIVO Pitch slide ${pitchCurrentSlideV2}"
+      style="
+        width:100%;
+        height:100%;
+        object-fit:contain;
+        display:block;
+      "
+    >
+  `;
+
+  pitchCounterElV2.textContent =
+    `${pitchCurrentSlideV2} / ${images.length}`;
 }
 </script>
 
