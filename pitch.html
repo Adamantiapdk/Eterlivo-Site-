@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>ETERLIVO — Pitch</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:wght@600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+
+    :root {
+      --ivory: #f7f3e8;
+      --cream-light: #fbf8f1;
+      --brown: #4b2d14;
+      --gold: #9a7440;
+      --border: #c9baa3;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+
+      background: var(--ivory);
+
+      font-family: "Noto Sans", sans-serif;
+    }
+
+    /* HEADER */
+
+    .page-header {
+      flex: 0 0 auto;
+
+      min-height: 72px;
+
+      display: grid;
+      grid-template-columns:
+        160px
+        1fr
+        160px;
+
+      align-items: center;
+
+      padding: 10px 24px;
+
+      background: var(--cream-light);
+
+      border-bottom:
+        1px solid var(--border);
+    }
+
+    .back-button {
+      justify-self: start;
+
+      padding: 10px 16px;
+
+      border:
+        1px solid var(--gold);
+
+      border-radius: 8px;
+
+      background: var(--brown);
+
+      color: var(--ivory);
+
+      text-decoration: none;
+
+      font-weight: 700;
+    }
+
+    .back-button:hover {
+      background: var(--gold);
+    }
+
+    .page-title {
+      margin: 0;
+
+      text-align: center;
+
+      font-family:
+        "Noto Serif",
+        serif;
+
+      font-size: 28px;
+
+      color: var(--brown);
+    }
+
+    .page-logo {
+      justify-self: end;
+
+      font-family:
+        "Noto Serif",
+        serif;
+
+      font-weight: 800;
+
+      letter-spacing: 2px;
+
+      color: var(--brown);
+    }
+
+    /* PITCH */
+
+    .pitch-area {
+      flex: 1;
+      min-height: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 24px;
+
+      background: var(--ivory);
+    }
+
+    .pitch-frame {
+      width: min(1200px, 100%);
+      aspect-ratio: 16 / 9;
+
+      background: white;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 14px;
+
+      box-shadow:
+        0 16px 40px
+        rgba(0, 0, 0, 0.18);
+
+      overflow: hidden;
+    }
+
+    .pitch-frame img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+
+      display: block;
+    }
+
+    /* NAV */
+
+    .pitch-controls {
+      position: fixed;
+
+      bottom: 24px;
+      left: 50%;
+
+      transform:
+        translateX(-50%);
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 14px;
+
+      padding:
+        10px
+        16px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(247, 243, 232, 0.95);
+
+      border:
+        1px solid var(--gold);
+
+      box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.15);
+    }
+
+    .pitch-button {
+      width: 42px;
+      height: 42px;
+
+      border: none;
+
+      border-radius: 50%;
+
+      background: var(--brown);
+
+      color: var(--ivory);
+
+      font-size: 22px;
+
+      cursor: pointer;
+    }
+
+    .pitch-button:hover {
+      background: var(--gold);
+    }
+
+    .pitch-counter {
+      min-width: 70px;
+
+      text-align: center;
+
+      font-weight: 700;
+
+      color: var(--brown);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+
+      .page-header {
+        min-height: 60px;
+
+        grid-template-columns:
+          auto
+          1fr
+          auto;
+
+        padding: 8px 10px;
+      }
+
+      .back-button {
+        padding: 8px 11px;
+
+        font-size: 13px;
+      }
+
+      .page-title {
+        font-size: 18px;
+      }
+
+      .page-logo {
+        font-size: 12px;
+
+        letter-spacing: 1px;
+      }
+
+      .pitch-area {
+        padding: 8px;
+      }
+
+      .pitch-frame {
+        width: 100%;
+
+        border-radius: 8px;
+      }
+
+      .pitch-controls {
+        bottom: 12px;
+
+        gap: 10px;
+
+        padding:
+          7px
+          10px;
+      }
+
+      .pitch-button {
+        width: 38px;
+        height: 38px;
+
+        font-size: 20px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <header class="page-header">
+
+    <a
+      class="back-button"
+      href="index.html">
+      ← BACK
+    </a>
+
+    <h1
+      id="pitch-title"
+      class="page-title">
+      PITCH
+    </h1>
+
+    <div class="page-logo">
+      ETERLIVO
+    </div>
+
+  </header>
+
+
+  <main class="pitch-area">
+
+    <div class="pitch-frame">
+
+      <img
+        id="pitch-image"
+        src="pitch-en-01.jpg"
+        alt="ETERLIVO Pitch">
+
+    </div>
+
+  </main>
+
+
+  <div class="pitch-controls">
+
+    <button
+      class="pitch-button"
+      onclick="changeSlide(-1)">
+      ←
+    </button>
+
+    <div
+      id="pitch-counter"
+      class="pitch-counter">
+      1 / 16
+    </div>
+
+    <button
+      class="pitch-button"
+      onclick="changeSlide(1)">
+      →
+    </button>
+
+  </div>
+
+
+  <script>
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const lang =
+      params.get("lang") || "en";
+
+
+    const pitchImage =
+      document.getElementById(
+        "pitch-image"
+      );
+
+    const pitchCounter =
+      document.getElementById(
+        "pitch-counter"
+      );
+
+    const pitchTitle =
+      document.getElementById(
+        "pitch-title"
+      );
+
+
+    let currentSlide = 1;
+
+    const totalSlides = 16;
+
+
+    let prefix = "pitch-en";
+
+
+    if (lang === "de") {
+
+      prefix = "pitch-de";
+
+      pitchTitle.textContent =
+        "EXPOSÉ";
+
+    } else if (lang === "gr") {
+
+      prefix = "pitch-en";
+
+      pitchTitle.textContent =
+        "ΣΥΝΤΟΜΗ ΠΑΡΟΥΣΙΑΣΗ";
+
+    } else {
+
+      pitchTitle.textContent =
+        "PITCH";
+
+    }
+
+
+    function updateSlide() {
+
+      const number =
+        String(currentSlide)
+          .padStart(2, "0");
+
+      pitchImage.src =
+        `${prefix}-${number}.jpg`;
+
+      pitchCounter.textContent =
+        `${currentSlide} / ${totalSlides}`;
+
+    }
+
+
+    function changeSlide(direction) {
+
+      currentSlide += direction;
+
+      if (currentSlide < 1) {
+        currentSlide = 1;
+      }
+
+      if (
+        currentSlide >
+        totalSlides
+      ) {
+        currentSlide =
+          totalSlides;
+      }
+
+      updateSlide();
+
+    }
+
+  </script>
+
+</body>
+
+</html>
