@@ -3149,6 +3149,11 @@ function skipIntroIfRequested() {
 
   if (params.get("skipIntro") === "1") {
 
+    const lang =
+      params.get("lang") || "en";
+
+    changeLanguage(lang);
+
     const intro =
       document.getElementById(
         "intro-screen"
@@ -3160,10 +3165,15 @@ function skipIntroIfRequested() {
       );
     }
 
+    window.history.replaceState(
+      {},
+      "",
+      "index.html"
+    );
+
   }
 
 }
-
 if (document.readyState === "loading") {
 
   document.addEventListener(
