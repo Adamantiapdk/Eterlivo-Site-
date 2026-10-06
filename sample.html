@@ -199,9 +199,11 @@
   href="index.html">
   ← BACK
 </a>
-    <h1 class="reader-title">
-      READING SAMPLE
-    </h1>
+   <h1
+  id="sample-title"
+  class="reader-title">
+  READING SAMPLE
+</h1>
 
     <div class="reader-logo">
       ETERLIVO
@@ -229,7 +231,27 @@
 
   const lang =
     params.get("lang") || "en";
+const sampleTitle =
+  document.getElementById(
+    "sample-title"
+  );
 
+if (lang === "de") {
+
+  sampleTitle.textContent =
+    "LESEPROBE";
+
+} else if (lang === "gr") {
+
+  sampleTitle.textContent =
+    "ΕΝΔΕΙΚΤΙΚΑ ΚΕΦΑΛΑΙΑ";
+
+} else {
+
+  sampleTitle.textContent =
+    "READING SAMPLE";
+
+}
   const backButton =
     document.getElementById(
       "back-button"
