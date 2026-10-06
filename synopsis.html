@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>ETERLIVO — Synopsis</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:wght@600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+
+    :root {
+      --ivory: #f7f3e8;
+      --cream-light: #fbf8f1;
+      --brown: #4b2d14;
+      --gold: #9a7440;
+      --border: #c9baa3;
+      --text: #40352b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      background: var(--ivory);
+      font-family: "Noto Sans", sans-serif;
+      color: var(--text);
+    }
+
+    .page-header {
+      min-height: 72px;
+
+      display: grid;
+      grid-template-columns:
+        160px
+        1fr
+        160px;
+
+      align-items: center;
+
+      padding: 10px 24px;
+
+      background: var(--cream-light);
+
+      border-bottom:
+        1px solid var(--border);
+
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .back-button {
+      justify-self: start;
+
+      padding: 10px 16px;
+
+      border:
+        1px solid var(--gold);
+
+      border-radius: 8px;
+
+      background: var(--brown);
+
+      color: var(--ivory);
+
+      text-decoration: none;
+
+      font-weight: 700;
+    }
+
+    .back-button:hover {
+      background: var(--gold);
+    }
+
+    .page-title {
+      margin: 0;
+
+      text-align: center;
+
+      font-family:
+        "Noto Serif",
+        serif;
+
+      font-size: 28px;
+
+      color: var(--brown);
+    }
+
+    .page-logo {
+      justify-self: end;
+
+      font-family:
+        "Noto Serif",
+        serif;
+
+      font-weight: 800;
+
+      letter-spacing: 2px;
+
+      color: var(--brown);
+    }
+
+    .synopsis-wrap {
+      width: min(900px, calc(100% - 40px));
+
+      margin: 42px auto 70px;
+
+      padding: 48px 56px;
+
+      background: var(--cream-light);
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 18px;
+
+      box-shadow:
+        0 14px 35px
+        rgba(75, 45, 20, 0.10);
+    }
+
+    .synopsis-wrap p {
+      margin:
+        0
+        0
+        1.25em;
+
+      font-family:
+        "Noto Serif",
+        serif;
+
+      font-size: 18px;
+
+      line-height: 1.8;
+
+      text-align: justify;
+    }
+
+    .synopsis-wrap p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 700px) {
+
+      .page-header {
+        min-height: 60px;
+
+        grid-template-columns:
+          auto
+          1fr
+          auto;
+
+        padding: 8px 10px;
+      }
+
+      .back-button {
+        padding: 8px 11px;
+
+        font-size: 13px;
+      }
+
+      .page-title {
+        font-size: 18px;
+      }
+
+      .page-logo {
+        font-size: 12px;
+
+        letter-spacing: 1px;
+      }
+
+      .synopsis-wrap {
+        width:
+          calc(100% - 20px);
+
+        margin:
+          16px
+          auto
+          40px;
+
+        padding:
+          28px
+          22px;
+
+        border-radius: 12px;
+      }
+
+      .synopsis-wrap p {
+        font-size: 16px;
+
+        line-height: 1.75;
+
+        text-align: left;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <header class="page-header">
+
+    <a
+      id="back-button"
+      class="back-button"
+      href="index.html">
+      ← BACK
+    </a>
+
+    <h1
+      id="page-title"
+      class="page-title">
+      SYNOPSIS
+    </h1>
+
+    <div class="page-logo">
+      ETERLIVO
+    </div>
+
+  </header>
+
+
+  <main>
+
+    <article
+      id="synopsis-text"
+      class="synopsis-wrap">
+    </article>
+
+  </main>
+
+
+  <script>
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const lang =
+      params.get("lang") || "en";
+
+
+    const title =
+      document.getElementById(
+        "page-title"
+      );
+
+    const synopsisText =
+      document.getElementById(
+        "synopsis-text"
+      );
+
+
+    const englishSynopsis = `
+      <p>In a land of eternal olive trees, the withered Great Olive stands as a reminder of Eterlivo’s defeat at the hands of Bre, Gaia’s fallen adviser. His curse has kept the earthbound Spartheans and the winged Flipeans divided for generations.</p>
+
+      <p>Zako, the Sparthean leader, longs for peace but is equally determined to safeguard his people’s dignity. His emerging feelings for Tila further complicate his position.</p>
+
+      <p>When Zako’s failed attempt to uncover the contents of the Flipeans’ enigmatic basket sparks an impromptu game with the Ballos—living, perfectly round orange creatures with expressive eyes and inseparable members of the Sparthean community—Tila admits that the basket contains only ordinary fruit and apologises. Their reconciliation breaks the curse, and a green leaf sprouts on the Great Olive.</p>
+
+      <p>Enraged, Bre retaliates by abducting the Ballos, stripping the Flipeans of their wings, and plunging the realms into darkness. The Great Olive chooses Zako, Tila, and a misfit band as Eterlivo’s last hope. One of its branches becomes a blazing torch, while Xechartes, an enigmatic guide with mismatched eyes, materialises from an old map to lead them on their journey.</p>
+
+      <p>To reach Bre’s Dark Castle, they must free the three realms that block their path. Zako must overcome his insecurities and unite the group, while Tila refuses to surrender to a wingless fate.</p>
+
+      <p>In the first realm, they encounter petrified dragons that hurl fireballs. Using a soaked net, the companions repel the dragons’ attacks and shatter the invisible dome imprisoning the realm’s inhabitants.</p>
+
+      <p>Next, they seek the stolen Seeds of Nature, guarded by eleven giants. Through teamwork and ingenuity, they prevail by carrying and exchanging crystal seed-spheres. They discover that the giants are the enchanted Months, blackmailed by Bre, who is holding their brother February captive.</p>
+
+      <p>In the water realm, its inhabitants refuse to let the group pass. The companions ally themselves with the water beings of a hidden lake. When the lake floods with toxic pitch, destroying the water beings’ tails, the crew transforms another deadly trial into a team game, saving both their new allies and the entire realm.</p>
+
+      <p>As the trials grow more dangerous, Zako learns to trust the team’s strength rather than bear every burden alone. Tila begins to realise that her wings were never her true source of strength.</p>
+
+      <p>Inside Bre’s Dark Castle, the companions refuse a potion meant to enslave them, overcome the final obstacles, and free the Ballos. In the ultimate battle, their unity and strategy turn Bre’s own power against him. The roots of the earth coil around his body, transforming him into an olive tree. The realms are restored, and the heroes return triumphantly to Eterlivo.</p>
+
+      <p>Tila receives new wings, now knowing that her true strength comes from her unyielding spirit. Zako is marked with Gaia’s silver olive leaf and realises that he does not need wings to soar.</p>
+
+      <p>Xechartes brings the memories of the five worlds to life, revealing how every deadly trap became a game and gave birth to basketball, volleyball, football, water polo, athletics, and martial arts. The five memories transform into interlocking circles, establishing the Games and preserving the sports—and the values born from them—for generations to come.</p>
+
+      <p>The heroes prevail not because they are the strongest, but because they never give up, support one another, and soar together on the “wings of the heart.”</p>
+    `;
+
+
+    const germanSynopsis = `
+      <p>Im Land der ewigen Olivenbäume erinnert der verdorrte, uralte Olivenbaum an Eterlivos Niederlage gegen Bre, Gaias verstoßenen Berater. Seit Generationen hält sein Fluch die erdverbundenen Spartheaner und die geflügelten Flipeaner in Feindschaft gefangen.</p>
+
+      <p>Zako, der Anführer der Spartheaner, sehnt sich nach Frieden, will aber zugleich die Würde seines Volkes verteidigen. Seine ersten Gefühle für Tila machen seine Lage noch komplizierter. Er sieht sich gezwungen zu handeln, um die Ballos zu beschützen – lebendige, vollkommen runde, orangefarbene Wesen mit ausdrucksstarken Augen, die untrennbar mit dem Volk der Spartheaner verbunden sind. Zudem muss er das Rätsel um den rätselhaften Korb der Flipeaner lösen, ein streng gehütetes Geheimnis, das Gerüchte über uralte Zauber nährt.</p>
+
+      <p>Als Zakos missglückter Versuch, den Inhalt des Korbes zu enthüllen, zu einem Spiel mit den Ballos führt, gesteht Tila, dass sich darin nur gewöhnliche Früchte befinden, und bittet um Verzeihung. Ihre Versöhnung bricht den Fluch und am uralten Olivenbaum sprießt ein grünes Blatt. Außer sich vor Zorn entführt Bre die Ballos, raubt den Flipeanern ihre Flügel und stürzt die Reiche in Finsternis.</p>
+
+      <p>Der Uralte Olivenbaum erwählt Zako, Tila und eine ungewöhnliche Gemeinschaft zur letzten Hoffnung ihrer Welt. Einer seiner Äste verwandelt sich in eine brennende Fackel, während aus einer alten Karte Xechartis Gestalt annimmt – ein rätselhafter Führer mit verschiedenfarbigen Augen, der sie von nun an leitet. Um Bres dunkle Burg zu erreichen, müssen sie drei Reiche befreien, die ihnen den Weg versperren. Zako überwindet seine Unsicherheiten und eint die Gruppe, während Tila sich weigert, sich in ein Leben ohne Flügel zu fügen.</p>
+
+      <p>Im ersten Reich begegnen sie versteinerten Drachen, die Feuerkugeln schleudern. Mit einem nassen Netz wehren sie die Geschosse ab und zerstören die unsichtbare Kuppel, unter der die Bewohner gefangen sind.</p>
+
+      <p>Danach suchen sie die gestohlenen Samen der Natur, die von elf Riesen beschützt werden. Durch geschicktes Teamwork und Einfallsreichtum besiegen sie ihre Gegner, indem sie die kristallinen Samenkugeln tragen und austauschen. Sie entdecken, dass die Riesen die verzauberten Monate sind, die Bre erpresste, indem er ihren Bruder, den Februar, gefangen hielt.</p>
+
+      <p>Im Wasserreich weigern sich die Bewohner, sie passieren zu lassen. Dort verbünden sie sich mit den Wasservölkern eines versteckten Sees. Als der See mit giftigem Pech überflutet wird, welches die Schwänze der Wasservölker zerstört, verwandelt die Gruppe auch diese tödliche Prüfung in ein gemeinsames Spiel, um sowohl die Wesen als auch das gesamte Reich zu retten.</p>
+
+      <p>Während die Prüfungen immer gefährlicher werden, lernt Zako, auf die Stärke der Gruppe zu vertrauen, statt die Verantwortung allein zu tragen. Tila beginnt zu begreifen, dass ihre Flügel niemals die wahre Quelle ihrer Stärke waren.</p>
+
+      <p>In Bres dunkler Burg widerstehen die Gefährten einem Trank, mit dem er sie versklaven will. Sie überwinden die letzten Hindernisse und befreien die Ballos. In der Entscheidungsschlacht wenden die Einigkeit und Strategie der Helden Bres' Macht gegen ihn. Die Wurzeln der Erde umschlingen seinen Körper und verwandeln ihn in einen Olivenbaum. Die Reiche erwachen zu neuem Leben und die Helden kehren triumphierend nach Eterlivo zurück.</p>
+
+      <p>Tila erhält neue Flügel, weiß nun jedoch, dass ihre wahre Stärke aus ihrem unbeugsamen Geist kommt. Zako erhält Gaias silbernes Olivenblatt und begreift, dass man keine Flügel braucht, um zu fliegen.</p>
+
+      <p>Xechartes erweckt die Erinnerungen an die fünf Welten zum Leben, in denen sich jede tödliche Falle in ein Spiel verwandelte und so die Sportarten Basketball, Volleyball, Fußball, Wasserball und Leichtathletik erschuf. Diese fünf Erinnerungen verwandeln sich in ineinandergreifende Kreise und begründen die Spiele, die die Sportarten und die daraus entstandenen Werte am Leben erhalten.</p>
+
+      <p>Die Helden siegten nicht, weil sie die Stärksten waren, sondern weil sie niemals aufgaben, einander Halt gaben und gemeinsam mit den „Flügeln des Herzens” flogen.</p>
+    `;
+
+
+    if (lang === "de") {
+
+      title.textContent =
+        "SYNOPSIS";
+
+      synopsisText.innerHTML =
+        germanSynopsis;
+
+    } else if (lang === "gr") {
+
+      title.textContent =
+        "ΣΥΝΟΨΗ";
+
+      synopsisText.innerHTML =
+        englishSynopsis;
+
+    } else {
+
+      title.textContent =
+        "SYNOPSIS";
+
+      synopsisText.innerHTML =
+        englishSynopsis;
+
+    }
+
+  </script>
+
+</body>
+
+</html>
