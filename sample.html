@@ -214,12 +214,13 @@
 
   <main class="book-area">
 
-    <iframe
-      allowfullscreen
-      allow="autoplay; fullscreen; clipboard-write"
-      scrolling="no"
-      src="https://heyzine.com/flip-book/fb2f401e3a.html">
-    </iframe>
+   <iframe
+  id="sample-frame"
+  allowfullscreen
+  allow="autoplay; fullscreen; clipboard-write"
+  scrolling="no"
+  src="https://heyzine.com/flip-book/fb2f401e3a.html">
+</iframe>
 
   </main>
 <script>
@@ -250,6 +251,22 @@ if (lang === "de") {
 
   sampleTitle.textContent =
     "READING SAMPLE";
+
+}
+  const sampleFrame =
+  document.getElementById(
+    "sample-frame"
+  );
+
+if (lang === "de") {
+
+  sampleFrame.src =
+    "https://heyzine.com/flip-book/a873973edc.html";
+
+} else {
+
+  sampleFrame.src =
+    "https://heyzine.com/flip-book/fb2f401e3a.html";
 
 }
   const backButton =
