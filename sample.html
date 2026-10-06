@@ -193,12 +193,12 @@
 
   <header class="reader-header">
 
-   <a
+  <a
+  id="back-button"
   class="back-button"
-  href="index.html?skipIntro=1">
+  href="index.html">
   ← BACK
 </a>
-
     <h1 class="reader-title">
       READING SAMPLE
     </h1>
@@ -220,7 +220,25 @@
     </iframe>
 
   </main>
+<script>
 
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  const lang =
+    params.get("lang") || "en";
+
+  const backButton =
+    document.getElementById(
+      "back-button"
+    );
+
+  backButton.href =
+    `index.html?skipIntro=1&lang=${lang}`;
+
+</script>
 </body>
 
 </html>
