@@ -232,43 +232,54 @@
 
   const lang =
     params.get("lang") || "en";
-const sampleTitle =
-  document.getElementById(
-    "sample-title"
-  );
 
-if (lang === "de") {
 
-  sampleTitle.textContent =
-    "LESEPROBE";
+  const sampleTitle =
+    document.getElementById(
+      "sample-title"
+    );
 
-} else if (lang === "gr") {
+  if (lang === "de") {
 
-  sampleTitle.textContent =
-    "ΕΝΔΕΙΚΤΙΚΑ ΚΕΦΑΛΑΙΑ";
+    sampleTitle.textContent =
+      "LESEPROBE";
 
-} else {
+  } else if (lang === "gr") {
 
-  sampleTitle.textContent =
-    "READING SAMPLE";
+    sampleTitle.textContent =
+      "ΕΝΔΕΙΚΤΙΚΑ ΚΕΦΑΛΑΙΑ";
 
-}
+  } else {
+
+    sampleTitle.textContent =
+      "READING SAMPLE";
+
+  }
+
+
   const sampleFrame =
-  document.getElementById(
-    "sample-frame"
-  );
+    document.getElementById(
+      "sample-frame"
+    );
 
-if (lang === "de") {
+  if (lang === "de") {
 
-  sampleFrame.src =
-    "https://heyzine.com/flip-book/a873973edc.html";
+    sampleFrame.src =
+      "https://heyzine.com/flip-book/a873973edc.html";
 
-} else {
+  } else if (lang === "gr") {
 
-  sampleFrame.src =
-    "https://heyzine.com/flip-book/fb2f401e3a.html";
+    sampleFrame.src =
+      "https://heyzine.com/flip-book/400878373c.html";
 
-}
+  } else {
+
+    sampleFrame.src =
+      "https://heyzine.com/flip-book/fb2f401e3a.html";
+
+  }
+
+
   const backButton =
     document.getElementById(
       "back-button"
