@@ -3431,15 +3431,15 @@ document.addEventListener(
 const sampleBookEl =
   document.getElementById("sample-book");
 
-async function openSampleModal() {
+function openSampleModal() {
 
-  const lang =
-    document.documentElement.lang || "en";
+  const sampleModal =
+    document.getElementById("sample-modal");
 
-  let sampleFile = "sample-en.html";
+  sampleModal.classList.add("open");
 
-if (lang === "de") {
-  sampleFile = "sample-de.html";
+  document.body.style.overflow =
+    "hidden";
 }
   try {
 
