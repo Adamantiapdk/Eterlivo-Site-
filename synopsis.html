@@ -219,12 +219,12 @@
 
   <header class="page-header">
 
-    <a
+  <a
+  id="back-button"
   class="back-button"
-  href="index.html?skipIntro=1">
+  href="index.html">
   ← BACK
 </a>
-
     <h1
       id="page-title"
       class="page-title">
@@ -257,7 +257,13 @@
 
     const lang =
       params.get("lang") || "en";
+const backButton =
+  document.getElementById(
+    "back-button"
+  );
 
+backButton.href =
+  `index.html?skipIntro=1&lang=${lang}`;
 
     const title =
       document.getElementById(
