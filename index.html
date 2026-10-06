@@ -3140,7 +3140,42 @@
 
   }
 
+function skipIntroIfRequested() {
 
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  if (params.get("skipIntro") === "1") {
+
+    const intro =
+      document.getElementById(
+        "intro-screen"
+      );
+
+    if (intro) {
+      intro.classList.add(
+        "intro-hidden"
+      );
+    }
+
+  }
+
+}
+
+if (document.readyState === "loading") {
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    skipIntroIfRequested
+  );
+
+} else {
+
+  skipIntroIfRequested();
+
+}
 
   window.addEventListener(
     "load",
