@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>ETERLIVO — Reading Sample</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:wght@600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+
+    :root {
+      --ivory: #f7f3e8;
+      --cream-light: #fbf8f1;
+      --brown: #4b2d14;
+      --gold: #9a7440;
+      --border: #c9baa3;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+
+      background: var(--ivory);
+
+      font-family: "Noto Sans", sans-serif;
+    }
+
+    /* HEADER */
+
+    .reader-header {
+      flex: 0 0 auto;
+
+      min-height: 72px;
+
+      display: grid;
+
+      grid-template-columns:
+        160px
+        1fr
+        160px;
+
+      align-items: center;
+
+      padding: 10px 24px;
+
+      background: var(--cream-light);
+
+      border-bottom:
+        1px solid var(--border);
+    }
+
+    .back-button {
+      justify-self: start;
+
+      padding: 10px 16px;
+
+      border:
+        1px solid var(--gold);
+
+      border-radius: 8px;
+
+      background: var(--brown);
+
+      color: var(--ivory);
+
+      text-decoration: none;
+
+      font-weight: 700;
+    }
+
+    .back-button:hover {
+      background: var(--gold);
+    }
+
+    .reader-title {
+      margin: 0;
+
+      text-align: center;
+
+      font-family:
+        "Noto Serif",
+        serif;
+
+      font-size: 28px;
+
+      color: var(--brown);
+    }
+
+    .reader-logo {
+      justify-self: end;
+
+      font-family:
+        "Noto Serif",
+        serif;
+
+      font-weight: 800;
+
+      letter-spacing: 2px;
+
+      color: var(--brown);
+    }
+
+    /* BOOK */
+
+    .book-area {
+      flex: 1;
+
+      min-height: 0;
+
+      padding: 8px;
+
+      background: var(--ivory);
+    }
+
+    .book-area iframe {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      border: none;
+
+      border-radius: 12px;
+
+      background: var(--ivory);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+
+      .reader-header {
+        min-height: 60px;
+
+        grid-template-columns:
+          auto
+          1fr
+          auto;
+
+        padding: 8px 10px;
+      }
+
+      .back-button {
+        padding: 8px 11px;
+
+        font-size: 13px;
+      }
+
+      .reader-title {
+        font-size: 18px;
+      }
+
+      .reader-logo {
+        font-size: 12px;
+
+        letter-spacing: 1px;
+      }
+
+      .book-area {
+        padding: 0;
+      }
+
+      .book-area iframe {
+        border-radius: 0;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <header class="reader-header">
+
+    <a
+      class="back-button"
+      href="index.html">
+      ← BACK
+    </a>
+
+    <h1 class="reader-title">
+      READING SAMPLE
+    </h1>
+
+    <div class="reader-logo">
+      ETERLIVO
+    </div>
+
+  </header>
+
+
+  <main class="book-area">
+
+    <iframe
+      allowfullscreen
+      allow="autoplay; fullscreen; clipboard-write"
+      scrolling="no"
+      src="https://heyzine.com/flip-book/fb2f401e3a.html">
+    </iframe>
+
+  </main>
+
+</body>
+
+</html>
