@@ -3441,29 +3441,7 @@ function openSampleModal() {
   document.body.style.overflow =
     "hidden";
 }
-  try {
-
-    const response =
-      await fetch(sampleFile);
-
-    const sampleHtml =
-      await response.text();
-
-    sampleBookEl.innerHTML =
-      sampleHtml;
-
-  } catch (error) {
-
-    sampleBookEl.innerHTML =
-      "<p>Unable to load sample.</p>";
-
-  }
-
-  sampleModalEl.classList.add("open");
-
-  document.body.style.overflow =
-    "hidden";
-}
+ 
   /* =========================
    PITCH SLIDES
 ========================= */
